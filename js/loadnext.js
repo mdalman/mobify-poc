@@ -21,11 +21,9 @@ function loadNextPage(event) {
         var items = [];
 
         $.each(data.images, function (index, imageUrl) {
-            var htmlRow = '<div class="row">' +
-                    '<div class="col-md-6">' +
-                        '<img class="img-responsive" data-src="' + imageUrl + '" />' +
-                    '</div>' +
-                '</div>';
+            var htmlRow = '<div class="col-xs-6">' +
+                            '<img class="img-responsive" data-src="' + imageUrl + '" />' +
+                          '</div>';
 
             items.push(htmlRow);
         });
