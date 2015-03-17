@@ -6,7 +6,7 @@ function loadImages(event) {
         $parent = $image.parent();
         var dataSrc = $image.attr('data-src');
         var opts = ResizeImages.processOptions();
-        opts.quality = 10;
+        opts.quality = 20;
         opts.maxWidth = $parent.width() * devicePixelRatio;
         var optimizedUrl = ResizeImages.getImageURL(dataSrc,opts);
         $image.removeAttr('data-src').attr('src', optimizedUrl);
