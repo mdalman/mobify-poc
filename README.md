@@ -7,7 +7,7 @@ Notes about resolution and quality:
 -If you allow zoom on a highly compressed image, you will see compression artifacts
 -Proposed solution: in places where you want users to be able to zoom, put data-zoom=true on the image, imageload.js will look at this when determining the quality to request from the image proxy.
 
-Table of values might look like this
+Table of values might look like this:
 
                  //pixelRatio:Quality
                  var qualities = {4:{'zoom':55,'noZoom':30},
