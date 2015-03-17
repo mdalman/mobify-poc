@@ -8,7 +8,7 @@ function loadNextPage(event) {
         $.each(data.images, function (index, imageUrl) {
             console.log(imageUrl);
             var opts = ResizeImages.processOptions();
-            opts.maxWidth = $parent.width();
+            opts.maxWidth = 180;
             
             var optimizedUrl = ResizeImages.getImageURL(imageUrl,opts);
             console.log(optimizedUrl);
