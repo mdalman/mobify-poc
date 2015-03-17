@@ -21,7 +21,7 @@ function loadNextPage(event) {
         $.each(data.images, function (index, imageUrl) {
             var htmlRow = '<div class="row">' +
                     '<div class="col-md-6">' +
-                        '<img class="img-responsive" src="' + imageUrl + '" />' +
+                        '<img class="img-responsive" data-src="' + imageUrl + '" />' +
                     '</div>' +
                 '</div>';
 
