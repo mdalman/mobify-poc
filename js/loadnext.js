@@ -7,7 +7,10 @@ function loadNextPage(event) {
 
         $.each(data.images, function (index, imageUrl) {
             console.log(imageUrl);
-            var optimizedUrl = ResizeImages.getImageURL(imageUrl,{maxWidth:180});
+            var opts = ResizeImages.processOptions();
+            opts.maxWidth = $parent.width();
+            
+            var optimizedUrl = ResizeImages.getImageURL(imageUrl,opts);
             console.log(optimizedUrl);
             var htmlRow = '<div class="row">' +
                     '<div class="col-md-6">' +
