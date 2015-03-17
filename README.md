@@ -9,9 +9,9 @@ Notes about resolution and quality:
 
 Table of values might look like this
 
-'''//pixelRatio:Quality
-var qualities = {4:{'zoom':55,'noZoom':30},
-                 3:{'zoom':60,'noZoom':35},
-                 2:{'zoom':65,'noZoom':40},
-                 1:{'zoom':70,'noZoom':45}}'''
+                 //pixelRatio:Quality
+                 var qualities = {4:{'zoom':55,'noZoom':30},
+                                  3:{'zoom':60,'noZoom':35},
+                                  2:{'zoom':65,'noZoom':40},
+                                  1:{'zoom':70,'noZoom':45}}
 
