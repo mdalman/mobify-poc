@@ -1,3 +1,16 @@
+function loadImages(event) {
+    var $images = $('img:not([src])[data-src]');
+    console.log($images);
+    $images.each(function (index, image) {
+        $image = $(image);
+        var dataSrc = $image.attr('data-src');
+        var opts = ResizeImages.processOptions();
+        opts.maxWidth = 180;
+        var optimizedUrl = ResizeImages.getImageURL(dataSrc,opts);
+        $image.removeAttr('data-src').attr('src', optimizedUrl);
+    });
+}
+
 function loadNextPage(event) {
     event.preventDefault();
     var nextUrl = $('#load-more').attr('href');
@@ -6,15 +19,9 @@ function loadNextPage(event) {
         var items = [];
 
         $.each(data.images, function (index, imageUrl) {
-            console.log(imageUrl);
-            var opts = ResizeImages.processOptions();
-            opts.maxWidth = 180;
-            
-            var optimizedUrl = ResizeImages.getImageURL(imageUrl,opts);
-            console.log(optimizedUrl);
             var htmlRow = '<div class="row">' +
                     '<div class="col-md-6">' +
-                        '<img class="img-responsive" src="' + optimizedUrl + '" />' +
+                        '<img class="img-responsive" src="' + imageUrl + '" />' +
                     '</div>' +
                 '</div>';
 
@@ -23,10 +30,12 @@ function loadNextPage(event) {
         html = items.join("");
 
         $('#load-more').before(html);
+        loadImages();
     });
 
 }
 
 $(document).ready(function() {
+    loadImages();
     $('#load-more').click(loadNextPage);
 });
