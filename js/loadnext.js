@@ -3,9 +3,10 @@ function loadImages(event) {
     console.log($images);
     $images.each(function (index, image) {
         $image = $(image);
+        $parent = $image.parent();
         var dataSrc = $image.attr('data-src');
         var opts = ResizeImages.processOptions();
-        opts.maxWidth = 180;
+        opts.maxWidth = $parent.width;
         var optimizedUrl = ResizeImages.getImageURL(dataSrc,opts);
         $image.removeAttr('data-src').attr('src', optimizedUrl);
     });
