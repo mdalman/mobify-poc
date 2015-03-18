@@ -1,6 +1,6 @@
-qualities = { 3:{'zoom':48,'default':35},//Morgan made up the 'default' from a nexus 5, 'zoom' value is a guess
-              2:{'zoom':60,'default':48},//Both values are guesses
-              1:{'zoom':70,'default':60}}//Both values are guesses
+qualities = { 3:{'zoom':48,'regular':35},//Morgan made up the 'default' from a nexus 5, 'zoom' value is a guess
+              2:{'zoom':60,'regular':48},//Both values are guesses
+              1:{'zoom':70,'regular':60}};//Both values are guesses
 
 function getQuality(pixelRatio,zoom){
     var roundedPixelRatio = Math.floor(pixelRatio); //Error on the side of quality
@@ -12,7 +12,7 @@ function getQuality(pixelRatio,zoom){
         return quality.zoom;
     }
     else{
-        return quality.default;
+        return quality.regular;
     }
 }
 
@@ -23,7 +23,7 @@ function insertFallbackImageUrl(e){
     $image.off('error'); //If we put another url in src that 404's we don't want an infinite loop
     
     console.log($image);
-    var fallbackSrc = $image.attr('data-fallback-src')
+    var fallbackSrc = $image.attr('data-fallback-src');
     console.log(fallbackSrc);
     $image.attr('src',fallbackSrc);
 }
