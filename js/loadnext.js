@@ -25,7 +25,8 @@ function insertFallbackImageUrl(e){
     console.log($image);
     var fallbackSrc = $image.attr('data-fallback-src')
     console.log(fallbackSrc);
-    $image.attr('src',fallbackSrc);
+//    $image.attr('src',fallbackSrc);
+    $image.attr('src','derp.jpg');
 }
 
 
