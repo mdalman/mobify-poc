@@ -14,6 +14,12 @@ function getQuality(pixelRatio,zoom){
     }
 }
 
+function insertFallbackImageUrl(e){
+    console.log('error world');
+    console.log(e);
+}
+
+
 function loadImages(event) {
     var $images = $('img:not([src])[data-src]');
     console.log($images);
@@ -28,7 +34,7 @@ function loadImages(event) {
         var optimizedUrl = ResizeImages.getImageURL(dataSrc,opts);
         var optimizedUrl = 'doink';
         $image.removeAttr('data-src').attr('src', optimizedUrl);
-        $image.on('error',function(){alert('Error World')});
+        $image.on('error',insertFallbackImageUrl);
     });
 }
 
