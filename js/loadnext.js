@@ -44,7 +44,13 @@ function loadImages(event) {
         var pixelRatio;
         if (typeof pixelRatioOverride === "undefined")
               {
-              pixelRatio = devicePixelRatio;     
+                 if (typeof devicePixelRatio === "undefined")
+                 {
+                     pixelRatio = 1;     
+                 }
+                 else{
+                     pixelRatio = devicePixelRatio;
+                 }
               }
         else{
                pixelRatio = pixelRatioOverride;
