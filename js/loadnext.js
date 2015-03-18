@@ -1,6 +1,6 @@
-qualities = { 3:{'zoom':48,'default':35},
-              2:{'zoom':60,'default':48},
-              1:{'zoom':70,'default':60}}
+qualities = { 3:{'zoom':48,'default':35},//Morgan made up the 'default' from a nexus 5, 'zoom' value is a guess
+              2:{'zoom':60,'default':48},//Both values are guesses
+              1:{'zoom':70,'default':60}}//Both values are guesses
 
 function getQuality(pixelRatio,zoom){
     var roundedPixelRatio = Math.floor(pixelRatio); //Error on the side of quality
