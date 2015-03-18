@@ -1,5 +1,5 @@
 qualities = { 3:{'zoom':48,'default':35},
-              2:{'zoom':65,'default':48},
+              2:{'zoom':60,'default':48},
               1:{'zoom':70,'default':60}}
 
 function getQuality(pixelRatio,zoom){
