@@ -51,8 +51,12 @@ function loadNextPage(event) {
         var items = [];
 
         $.each(data.images, function (index, imageUrl) {
+            var fallbackImageUrl = imageUrl.replace('/high-res/','/low-res/');
             var htmlRow = '<div class="col-xs-6">' +
-                            '<img class="img-responsive" data-src="' + imageUrl + '" />' +
+                            '<img class="img-responsive" ' +
+                                 'data-src="' + imageUrl + '" ' +
+                                 'data-fallback-src="' + fallbackImageUrl + '" ' +
+                                 '/>' +
                           '</div>';
 
             items.push(htmlRow);
