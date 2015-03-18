@@ -11,7 +11,6 @@ function loadImages(event) {
         opts.maxWidth = cssWidth * devicePixelRatio;
         var optimizedUrl = ResizeImages.getImageURL(dataSrc,opts);
         $image.removeAttr('data-src').attr('src', optimizedUrl);
-        $image.css('height',cssWidth+'px');
     });
 }
 
