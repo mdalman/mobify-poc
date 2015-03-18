@@ -40,7 +40,7 @@ function loadImages(event) {
         var $parent = $image.parent();
         var cssWidth = $parent.width();
         var dataSrc = $image.attr('data-src');
-        var opts = ResizeImages.processOptions();
+//        var opts = ResizeImages.processOptions();
         
         var pixelRatioOverride = purl(window.location).param('pr');
         
@@ -73,11 +73,11 @@ function loadImages(event) {
        
         console.log('Quality: '+quality);
        
-        opts.quality = quality;
-        opts.maxWidth = Math.ceil(cssWidth * pixelRatio);
-        var optimizedUrl = ResizeImages.getImageURL(dataSrc,opts);
+ //       opts.quality = quality;
+        var maxWidth = Math.ceil(cssWidth * pixelRatio);
+ //       var optimizedUrl = ResizeImages.getImageURL(dataSrc,opts);
         console.log(optimizedUrl);
-        var optimizedUrl = getImageUrl(dataSrc,opts.maxWidth,quality);
+        var optimizedUrl = getImageUrl(dataSrc,maxWidth,quality);
         console.log(optimizedUrl);
         if(window.location.href.indexOf("fallback") > -1) {
               optimizedUrl = 'fail://this-is-not-a-valid-url-because-you-specified-fallback.jpg';
