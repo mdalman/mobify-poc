@@ -2,8 +2,8 @@ function loadImages(event) {
     var $images = $('img:not([src])[data-src]');
     console.log($images);
     $images.each(function (index, image) {
-        $image = $(image);
-        $parent = $image.parent();
+        var $image = $(image);
+        var $parent = $image.parent();
         var cssWidth - $parent.width();
         var dataSrc = $image.attr('data-src');
         var opts = ResizeImages.processOptions();
