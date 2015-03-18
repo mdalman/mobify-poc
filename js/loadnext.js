@@ -16,9 +16,12 @@ function getQuality(pixelRatio,zoom){
 
 function insertFallbackImageUrl(e){
     console.log('error world');
-    $image = $(e.target);
+    var $image = $(e.target);
     
     console.log($image);
+    var fallbackSrc = $image.attr('data-fallback-src')
+    console.log(fallbackSrc);
+    $image.attr('src',fallbackSrc);
 }
 
 
