@@ -51,12 +51,13 @@ function loadImages(event) {
         
         var qualityOverride = purl(window.location).param('q');
 
-        var quality = getQuality(pixelRatio,false);
+        var quality;
         if (typeof qualityOverride === "undefined") {
-               quality = qualityOverride;
+              quality = getQuality(pixelRatio,false);
               }
         else{
               quality = qualityOverride;
+              
         }
        
         console.log('Quality: '+quality);
