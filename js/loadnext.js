@@ -37,8 +37,16 @@ function loadImages(event) {
         var cssWidth = $parent.width();
         var dataSrc = $image.attr('data-src');
         var opts = ResizeImages.processOptions();
-        opts.quality = getQuality(devicePixelRatio,false);
-        opts.maxWidth = cssWidth * devicePixelRatio;
+        
+        var pixelRatioOverride = purl(window.location).param('pixel_ratio');
+        
+        var pixelRatio = devicePixelRatio;
+        if (!(typeof pixelRatioOverride === "undefined")) {
+               pixelRatio = pixelRatioOverride;
+              }
+        
+        opts.quality = getQuality(pixelRatio,false);
+        opts.maxWidth = cssWidth * pixelRatio;
         var optimizedUrl = ResizeImages.getImageURL(dataSrc,opts);
         if(window.location.href.indexOf("fallback") > -1) {
               optimizedUrl = 'fail://this-is-not-a-valid-url-because-you-specified-fallback.jpg';
