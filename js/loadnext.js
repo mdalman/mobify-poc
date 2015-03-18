@@ -28,6 +28,9 @@ function insertFallbackImageUrl(e){
     $image.attr('src',fallbackSrc);
 }
 
+function getImageUrl(originalUrl,width,quality){
+    return '//ir0.mobify.com/project-mobify-poc/cb/jpg'+quality+'/'+width+'/'+originalUrl;
+}
 
 function loadImages(event) {
     var $images = $('img:not([src])[data-src]');
