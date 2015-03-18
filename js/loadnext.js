@@ -4,7 +4,7 @@ qualities = { 3:{'zoom':48,'default':35},
 
 function getQuality(pixelRatio,zoom){
     var roundedPixelRatio = Math.floor(pixelRatio); //Error on the side of quality
-    var qualityLookupKey = Math.min(4, roundedPixelRatio);
+    var qualityLookupKey = Math.min(3, roundedPixelRatio);
 
     var quality = qualities[qualityLookupKey];
     
