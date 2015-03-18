@@ -4,7 +4,7 @@ function loadImages(event) {
     $images.each(function (index, image) {
         var $image = $(image);
         var $parent = $image.parent();
-        var cssWidth - $parent.width();
+        var cssWidth = $parent.width();
         var dataSrc = $image.attr('data-src');
         var opts = ResizeImages.processOptions();
         opts.quality = 35;
