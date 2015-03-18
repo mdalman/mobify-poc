@@ -1,3 +1,19 @@
+qualities = {4:{'zoom':55,'default':30},
+              3:{'zoom':60,'default':35},
+              2:{'zoom':65,'default':40},
+              1:{'zoom':70,'default':45}}
+
+function getQuality(pixelRatio,zoom){
+    var qualityLookupKey = Math.min(4, pixelRatio);
+    var quality = qualities[qualityLookupKey];
+    if (zoom){
+        return quality.zoom;
+    }
+    else{
+        return quality.default;
+    }
+}
+
 function loadImages(event) {
     var $images = $('img:not([src])[data-src]');
     console.log($images);
@@ -7,7 +23,7 @@ function loadImages(event) {
         var cssWidth = $parent.width();
         var dataSrc = $image.attr('data-src');
         var opts = ResizeImages.processOptions();
-        opts.quality = 35;
+        opts.quality = getQuality(devicePixelRatio,false);
         opts.maxWidth = cssWidth * devicePixelRatio;
         var optimizedUrl = ResizeImages.getImageURL(dataSrc,opts);
         $image.removeAttr('data-src').attr('src', optimizedUrl);
