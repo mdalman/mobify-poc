@@ -38,7 +38,7 @@ function loadImages(event) {
         var dataSrc = $image.attr('data-src');
         var opts = ResizeImages.processOptions();
         
-        var pixelRatioOverride = purl(window.location).param('pixel_ratio');
+        var pixelRatioOverride = purl(window.location).param('pr');
         
         var pixelRatio = devicePixelRatio;
         if (!(typeof pixelRatioOverride === "undefined")) {
