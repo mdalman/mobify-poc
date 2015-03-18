@@ -20,7 +20,7 @@ function insertFallbackImageUrl(e){
               
     console.log('error world');
     var $image = $(e.target);
-    $image.off('error'); //If we put another url in src that 404's we don't want an infinite loop
+//    $image.off('error'); //If we put another url in src that 404's we don't want an infinite loop
     
     console.log($image);
     var fallbackSrc = $image.attr('data-fallback-src')
