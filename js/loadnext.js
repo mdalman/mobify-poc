@@ -37,9 +37,8 @@ function loadImages(event) {
         opts.quality = getQuality(devicePixelRatio,false);
         opts.maxWidth = cssWidth * devicePixelRatio;
         var optimizedUrl = ResizeImages.getImageURL(dataSrc,opts);
-        var optimizedUrl = 'doink';
-        if(window.location.href.indexOf("test_fallback") > -1) {
-              optimizedUrl = 'fail://this-is-not-a-valid-url-because-you-specified-test-fall-back.jpg';
+        if(window.location.href.indexOf("fallback") > -1) {
+              optimizedUrl = 'fail://this-is-not-a-valid-url-because-you-specified-fallback.jpg';
               }
         
         $image.removeAttr('data-src').attr('src', optimizedUrl);
