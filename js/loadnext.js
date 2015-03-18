@@ -17,7 +17,7 @@ function loadNextPage(event) {
     event.preventDefault();
     var nextUrl = $('#load-more').attr('href');
     $.getJSON(nextUrl, function (data) {
-        $('#load-more-container').attr('href', data.next);
+        $('#load-more').attr('href', data.next);
         var items = [];
 
         $.each(data.images, function (index, imageUrl) {
@@ -29,7 +29,7 @@ function loadNextPage(event) {
         });
         html = items.join("");
 
-        $('#load-more').before(html);
+        $('#load-more-container').before(html);
         loadImages();
     });
 
