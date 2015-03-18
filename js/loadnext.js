@@ -16,7 +16,9 @@ function getQuality(pixelRatio,zoom){
 
 function insertFallbackImageUrl(e){
     console.log('error world');
-    console.log(e);
+    $image = $(e.target);
+    
+    console.log($image);
 }
 
 
