@@ -1,4 +1,4 @@
-qualities = {4:{'zoom':55,'default':30},
+qualities = {4:{'zoom':55,'default':10},
               3:{'zoom':60,'default':35},
               2:{'zoom':65,'default':48},
               1:{'zoom':70,'default':60}}
