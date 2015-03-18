@@ -39,14 +39,29 @@ function loadImages(event) {
         
         var pixelRatioOverride = purl(window.location).param('pr');
         
-        var pixelRatio = devicePixelRatio;
-        if (!(typeof pixelRatioOverride === "undefined")) {
+        var pixelRatio;
+        if (typeof pixelRatioOverride === "undefined")
+              {
+              pixelRatio = devicePixelRatio;     
+              }
+        else{
                pixelRatio = pixelRatioOverride;
               }
+        console.log('Pixel Ratio: '+pixelRatio);
         
-        console.log(pixelRatio);
-        
-        opts.quality = getQuality(pixelRatio,false);
+        var qualityOverride = purl(window.location).param('q');
+
+        var quality = getQuality(pixelRatio,false);
+        if (typeof qualityOverride === "undefined") {
+               quality = qualityOverride;
+              }
+        else{
+              quality = qualityOverride;
+        }
+       
+        console.log('Quality: '+quality);
+       
+        opts.quality = quality;
         opts.maxWidth = cssWidth * pixelRatio;
         var optimizedUrl = ResizeImages.getImageURL(dataSrc,opts);
         if(window.location.href.indexOf("fallback") > -1) {
