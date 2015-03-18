@@ -75,8 +75,10 @@ function loadImages(event) {
        
         opts.quality = quality;
         opts.maxWidth = Math.ceil(cssWidth * pixelRatio);
-//        var optimizedUrl = ResizeImages.getImageURL(dataSrc,opts);
+        var optimizedUrl = ResizeImages.getImageURL(dataSrc,opts);
+        console.log(optimizedUrl);
         var optimizedUrl = getImageUrl(dataSrc,opts.maxWidth,quality);
+        console.log(optimizedUrl);
         if(window.location.href.indexOf("fallback") > -1) {
               optimizedUrl = 'fail://this-is-not-a-valid-url-because-you-specified-fallback.jpg';
               }
