@@ -1,7 +1,7 @@
 qualities = {4:{'zoom':55,'default':30},
               3:{'zoom':60,'default':35},
-              2:{'zoom':65,'default':40},
-              1:{'zoom':70,'default':45}}
+              2:{'zoom':65,'default':43},
+              1:{'zoom':70,'default':50}}
 
 function getQuality(pixelRatio,zoom){
     var qualityLookupKey = Math.min(4, pixelRatio);
