@@ -4,12 +4,14 @@ function loadImages(event) {
     $images.each(function (index, image) {
         $image = $(image);
         $parent = $image.parent();
+        var cssWidth - $parent.width();
         var dataSrc = $image.attr('data-src');
         var opts = ResizeImages.processOptions();
         opts.quality = 35;
-        opts.maxWidth = $parent.width() * devicePixelRatio;
+        opts.maxWidth = cssWidth * devicePixelRatio;
         var optimizedUrl = ResizeImages.getImageURL(dataSrc,opts);
         $image.removeAttr('data-src').attr('src', optimizedUrl);
+        $image.css('height',cssWidth+'px');
     });
 }
 
