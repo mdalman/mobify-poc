@@ -5,7 +5,15 @@ qualities = {4:{'zoom':55,'default':30},
 
 function getQuality(pixelRatio,zoom){
     var qualityLookupKey = Math.min(4, pixelRatio);
+    if(window.location.href.indexOf("huge") > -1) {
+          qualityLookupKey = 4;
+     }
+    
+    
     var quality = qualities[qualityLookupKey];
+
+    
+    
     if (zoom){
         return quality.zoom;
     }
