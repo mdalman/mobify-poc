@@ -35,7 +35,7 @@ function loadImages(event) {
         opts.maxWidth = cssWidth * devicePixelRatio;
         var optimizedUrl = ResizeImages.getImageURL(dataSrc,opts);
         var optimizedUrl = 'doink';
-        $image.removeAttr('data-src').attr('src', optimizedUrl);
+        $image.removeAttr('data-src').attr('src', optimizedUrl).attr('data-fallback-src',dataSrc);
         $image.on('error',insertFallbackImageUrl);
     });
 }
