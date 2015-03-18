@@ -45,6 +45,8 @@ function loadImages(event) {
                pixelRatio = pixelRatioOverride;
               }
         
+        console.log(pixelRatio);
+        
         opts.quality = getQuality(pixelRatio,false);
         opts.maxWidth = cssWidth * pixelRatio;
         var optimizedUrl = ResizeImages.getImageURL(dataSrc,opts);
