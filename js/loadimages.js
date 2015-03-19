@@ -3,18 +3,13 @@ qualities = { 3:{'zoom':48,'regular':35},//Morgan made up the 'default' from a n
               1:{'zoom':70,'regular':60}//Both values are guesses
 };
 
-function getQuality(pixelRatio,zoom){
-    var roundedPixelRatio = Math.floor(pixelRatio); //Error on the side of quality
-    var qualityLookupKey = Math.min(3, roundedPixelRatio); //pixel ratio higher than 3X will get same quality as 3X
-    qualityLookupKey = Math.max(1, roundedPixelRatio); //pixel ratio less than 1X will get same quality as 1X
-
-    var quality = qualities[qualityLookupKey];
-    
-    if (zoom){
-        return quality.zoom;
+function getUrlOverride(queryParameter,original){
+    var override = purl(window.location).param(queryParameter);
+    if (typeof override === "undefined"){
+                  return original;
     }
     else{
-        return quality.regular;
+                  return override;
     }
 }
 
@@ -47,17 +42,13 @@ function getImageUrl(originalUrl,width,quality){
     else{
                  format = 'jpg';
     }
-    
-    
-              
     return '//ir0.mobify.com/project-mobify-poc/c8/'+format+quality+'/'+steppedWidth+'/'+originalUrl;
 }
 
+
 function getPixelRatio(){
-              var pixelRatioOverride = purl(window.location).param('pr');
               var pixelRatio;
-              if (typeof pixelRatioOverride === "undefined")
-              {
+
                  if (typeof devicePixelRatio === "undefined")
                  {
                      pixelRatio = 1;     
@@ -65,27 +56,24 @@ function getPixelRatio(){
                  else{
                      pixelRatio = devicePixelRatio;
                  }
-              }
-              else{
-               pixelRatio = pixelRatioOverride;
-              }
-              console.log('Pixel Ratio: '+pixelRatio);   
-              return pixelRatio
+                 return getUrlOverride('pr',pixelRatio,)
 }
 
-function getQualityWithOverride(pixelRatio){
-        var qualityOverride = purl(window.location).param('q');
+function getQuality(pixelRatio,zoom){
+    var quality;
+    var roundedPixelRatio = Math.floor(pixelRatio); //Error on the side of quality
+    var qualityLookupKey = Math.min(3, roundedPixelRatio); //pixel ratio higher than 3X will get same quality as 3X
+    qualityLookupKey = Math.max(1, roundedPixelRatio); //pixel ratio less than 1X will get same quality as 1X
 
-        var quality;
-        if (typeof qualityOverride === "undefined") {
-              quality = getQuality(pixelRatio,false);
-              }
-        else{
-              quality = qualityOverride;
-              
-        }
-        console.log('Quality: '+quality);
-        return quality;
+    var qualityObject = qualities[qualityLookupKey];
+    
+    if (zoom){
+        quality = qualityObject.zoom;
+    }
+    else{
+        quality = qualityObject.regular;
+    }
+    return getUrlOverride('q',quality);
 }
 
 
@@ -99,7 +87,7 @@ function loadImages(event) {
         var dataSrc = $image.attr('data-src');
 
         var pixelRatio = getPixelRatio();
-        var quality = getQualityWithOverride(pixelRatio);
+        var quality = getQuality(pixelRatio);
        
         var maxWidth = Math.ceil(cssWidth * pixelRatio);
 
