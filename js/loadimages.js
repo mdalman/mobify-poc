@@ -1,10 +1,12 @@
 qualities = { 3:{'zoom':48,'regular':35},//Morgan made up the 'default' from a nexus 5, 'zoom' value is a guess
               2:{'zoom':60,'regular':48},//Both values are guesses
-              1:{'zoom':70,'regular':60}};//Both values are guesses
+              1:{'zoom':70,'regular':60}
+};//Both values are guesses
 
 function getQuality(pixelRatio,zoom){
     var roundedPixelRatio = Math.floor(pixelRatio); //Error on the side of quality
-    var qualityLookupKey = Math.min(3, roundedPixelRatio);
+    var qualityLookupKey = Math.min(3, roundedPixelRatio); //pixel ratio higher than 3X will get same quality as 3X
+    qualityLookupKey = Math.max(1, roundedPixelRatio); //pixel ratio less than 1X will get same quality as 1X
 
     var quality = qualities[qualityLookupKey];
     
