@@ -51,20 +51,10 @@ function getImageUrl(originalUrl,width,quality){
     return '//ir0.mobify.com/project-mobify-poc/c8/'+format+quality+'/'+steppedWidth+'/'+originalUrl;
 }
 
-function loadImages(event) {
-    var $images = $('img:not([src])[data-src]');
-    console.log($images);
-    $images.each(function (index, image) {
-        var $image = $(image);
-        var $parent = $image.parent();
-        var cssWidth = $parent.width();
-        var dataSrc = $image.attr('data-src');
-//        var opts = ResizeImages.processOptions();
-        
-        var pixelRatioOverride = purl(window.location).param('pr');
-        
-        var pixelRatio;
-        if (typeof pixelRatioOverride === "undefined")
+function getPixelRatio(){
+              var pixelRatioOverride = purl(window.location).param('pr');
+              var pixelRatio;
+              if (typeof pixelRatioOverride === "undefined")
               {
                  if (typeof devicePixelRatio === "undefined")
                  {
@@ -74,11 +64,14 @@ function loadImages(event) {
                      pixelRatio = devicePixelRatio;
                  }
               }
-        else{
+              else{
                pixelRatio = pixelRatioOverride;
               }
-        console.log('Pixel Ratio: '+pixelRatio);
-        
+              console.log('Pixel Ratio: '+pixelRatio);   
+              return pixelRatio
+}
+
+function getQualityWithOverride(pixelRatio){
         var qualityOverride = purl(window.location).param('q');
 
         var quality;
@@ -89,12 +82,24 @@ function loadImages(event) {
               quality = qualityOverride;
               
         }
-       
         console.log('Quality: '+quality);
+        return quality;
+}
+
+
+function loadImages(event) {
+    var $images = $('img:not([src])[data-src]');
+    console.log($images);
+    $images.each(function (index, image) {
+        var $image = $(image);
+        var $parent = $image.parent();
+        var cssWidth = $parent.width();
+        var dataSrc = $image.attr('data-src');
+
+        var pixelRatio = getPixelRatio();
+        var quality = getQualityWithOverride(pixelRatio);
        
- //       opts.quality = quality;
         var maxWidth = Math.ceil(cssWidth * pixelRatio);
- //       var optimizedUrl = ResizeImages.getImageURL(dataSrc,opts);
 
         var optimizedUrl = getImageUrl(dataSrc,maxWidth,quality);
         console.log(optimizedUrl);
