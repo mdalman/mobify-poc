@@ -37,7 +37,7 @@ function getImageUrl(originalUrl,width,quality){
     var format;
     var pixelStep = 100;
     
-    var steppedWith = roundToStep(width,pixelStep);
+    var steppedWidth = roundToStep(width,pixelStep);
     
     if(Modernizr.webp){
                   format = 'webp';
@@ -48,7 +48,7 @@ function getImageUrl(originalUrl,width,quality){
     
     
               
-    return '//ir0.mobify.com/project-mobify-poc/c8/'+format+quality+'/'+width+'/'+originalUrl;
+    return '//ir0.mobify.com/project-mobify-poc/c8/'+format+quality+'/'+steppedWidth+'/'+originalUrl;
 }
 
 function loadImages(event) {
