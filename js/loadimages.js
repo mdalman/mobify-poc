@@ -69,7 +69,7 @@ function getImageUrl(originalUrl, width, quality) {
 	var url = IMAGE_RESIZE_PROXY_BASE + format + quality + '/' + steppedWidth + '/' + originalUrl;
 	var forceFallback = getUrlOverride(FALLBACK_TRIGGER_PARAMETER,false);
 	if(forceFallback){
-		url = 'fail://this-is-not-a-valid-url-because-you-specified-fallback.jpg';
+		url = 'http://www.mec.ca/Sitemap/404_page.jsp?type=404';
 	}
 	console.log('Optimized url: '+url);
 	return url;
