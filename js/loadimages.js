@@ -10,6 +10,8 @@ PIXEL_STEP = 100;
 MINIMUM_PIXEL_RATIO = 1;
 MAXIMUM_PIXEL_RATIO = 3;
 
+MAXIMUM_WIDTH = 4000;
+
 IMAGE_RESIZE_PROXY_BASE = '//ir0.mobify.com/project-mobify-poc/c8/';
 
 QUALITIES = {
@@ -122,6 +124,9 @@ function loadImage($image){
 	console.log('cssWidth: '+cssWidth);
 	console.log('pixelRatio: '+pixelRatio);
 	var targetWidth = Math.ceil(cssWidth * pixelRatio);
+	if (targetWidth > MAXIMUM_WIDTH){
+	      targetWidth = MAXIMUM_WIDTH;
+	}
 
 	var format = getImageFormat();
 	var steppedTargetWidth = roundToStep(targetWidth, PIXEL_STEP);
