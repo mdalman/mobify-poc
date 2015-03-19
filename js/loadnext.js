@@ -20,6 +20,7 @@ function loadNextPage(event) {
 
         $('#load-more-container').before(html);
         loadImages();
+        registerImageClicks();
     });
 
 }
@@ -35,9 +36,13 @@ function clickImageHandler(event){
         
 }
 
+function registerImageClicks(){
+	$('.img-responsive').on('click', clickImageHandler);
+}
+
 $(document).ready(function() {
     console.log('webp'+Modernizr.webp);
     loadImages();
     $('#load-more').click(loadNextPage);
-    $('.img-responsive').on('click', clickImageHandler);
+    registerImageClicks();
 });
