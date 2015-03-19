@@ -29,7 +29,15 @@ function insertFallbackImageUrl(e){
 }
 
 function getImageUrl(originalUrl,width,quality){
-    return '//ir0.mobify.com/project-mobify-poc/c8/webp'+quality+'/'+width+'/'+originalUrl;
+    var format;
+    if(Modernizr.webp){
+                  format = 'webp';
+    }
+    else{
+                 format = 'jpg';
+    }
+              
+    return '//ir0.mobify.com/project-mobify-poc/c8/'+format+quality+'/'+width+'/'+originalUrl;
 }
 
 function loadImages(event) {
