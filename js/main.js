@@ -49,7 +49,8 @@ function registerImageClicks(){
 }
 
 $(document).ready(function() {
-    console.log('webp'+Modernizr.webp);
+    $('#pixel-ratio').append(getPixelRatio()+'X');
+  //  console.log('webp'+Modernizr.webp);
     loadImages();
     $('#load-more').click(loadNextPage);
     registerImageClicks();
