@@ -28,4 +28,9 @@ $(document).ready(function() {
     console.log('webp'+Modernizr.webp);
     loadImages();
     $('#load-more').click(loadNextPage);
+    $('.img-responsive').on('click', function() {
+			$('.imagepreview').attr('data-src', $(this).attr('data-src'));
+    		$('#imagemodal').modal('show'); 
+            loadImages();  
+		});
 });
