@@ -112,7 +112,7 @@ function loadImage($image){
 	var dataSrc = $image.attr(IMAGE_URL_ATTRIBUTE_NAME);
 
 	var pixelRatio = getPixelRatio();
-	var quality = getQuality(pixelRatio);
+	var quality = getQuality(pixelRatio,false);
 	
 	var $parent = $image.parent();
 	var cssWidth = $parent.width();
