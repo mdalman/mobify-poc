@@ -24,13 +24,16 @@ function loadNextPage(event) {
 
 }
 
+function clickImageHandler(event){
+	var $target = $(event).target
+	$('.imagepreview').removeAttr('src').attr('data-src', $target.attr('data-src'));
+    	$('#imagemodal').modal('show'); 
+        loadImages();
+}
+
 $(document).ready(function() {
     console.log('webp'+Modernizr.webp);
     loadImages();
     $('#load-more').click(loadNextPage);
-    $('.img-responsive').on('click', function() {
-			$('.imagepreview').attr('data-src', $(this).attr('data-src'));
-    		$('#imagemodal').modal('show'); 
-            loadImages();  
-		});
+    $('.img-responsive').on('click', clickImageHandler);
 });
