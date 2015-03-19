@@ -25,7 +25,7 @@ function loadNextPage(event) {
 }
 
 function clickImageHandler(event){
-	var $target = $(event).target
+	var $target = $(event.target);
 	$('.imagepreview').removeAttr('src').attr('data-src', $target.attr('data-src'));
     	$('#imagemodal').modal('show'); 
         loadImages();
