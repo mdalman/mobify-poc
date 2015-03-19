@@ -32,7 +32,7 @@ function loadNextPage(event) {
 function clickImageHandler(event){
 	var $target = $(event.target);
 	var imageUrl = $target.attr('data-src');
-	var fallbackImageUrl = getFallBackImageUrl(imageUrl);
+	var fallbackImageUrl = $target.attr('data-fallback-src');;
 	$('.img-preview').removeAttr('src').attr('data-src', imageUrl).attr('data-fallback-src',fallbackImageUrl);
     	$('#img-modal').modal('show'); 
     	
