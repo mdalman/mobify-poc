@@ -16,8 +16,10 @@ qualities = {
 function getUrlOverride(queryParameter, original) {
     var override = purl(window.location).param(queryParameter);
     if (typeof override === "undefined") {
+        console.log('No override: '+queryParameter + '=' + original);
         return original;
     } else {
+        console.log('Override: '+queryParameter + '=' + override);
         return override;
     }
 }
