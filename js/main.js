@@ -54,7 +54,8 @@ $(document).ready(function() {
     $('select[name="fb"] option[value="'+$.url(window.location).param('fb')+'"]').prop('selected',true);     
 	
     $('#pixel-ratio').append(getPixelRatio()+'X');
-    $('#quality').append(getQuality(getPixelRatio())+'%');
+    $('#zoom-quality').append(getQuality(getPixelRatio(),true)+'%');
+    $('#regular-quality').append(getQuality(getPixelRatio(),false)+'%');    
   //  console.log('webp'+Modernizr.webp);
     loadImages();
     $('#load-more').click(loadNextPage);
