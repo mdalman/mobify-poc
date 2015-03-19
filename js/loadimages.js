@@ -30,10 +30,10 @@ QUALITIES = {
 function getUrlOverride(queryParameter, original) {
 	var override = purl(window.location).param(queryParameter);
 	if (typeof override === "undefined") {
-		console.log('No override: '+queryParameter + '=' + original);
+//		console.log('No override: '+queryParameter + '=' + original);
 		return original;
 	} else {
-		console.log('Override: '+queryParameter + '=' + override);
+//		console.log('Override: '+queryParameter + '=' + override);
 		return override;
 	}
 }
@@ -44,7 +44,7 @@ function insertFallbackImageUrl(e) {
 	$image.off('error'); //If we put another url in src that 404's we don't want an infinite loop
 	var fallbackSrc = $image.attr(IMAGE_URL_FALLBACK_ATTRIBUTE_NAME);
 	var src = $image.attr('src');
-	console.log('Error loading: '+src+' reverting to fallback: '+fallbackSrc);
+//	console.log('Error loading: '+src+' reverting to fallback: '+fallbackSrc);
 	$image.attr('src', fallbackSrc);
 }
 
@@ -67,7 +67,7 @@ function getImageUrl(originalUrl, width, quality,format) {
 	if(forceFallback === 'true'){
 		url = 'http://www.mec.ca/Sitemap/404_page.jsp?type=404';
 	}
-	console.log('Optimized url: '+url);
+//	console.log('Optimized url: '+url);
 	return url;
 }
 
