@@ -9,7 +9,7 @@ MINIMUM_PIXEL_RATIO = 1;
 MAXIMUM_PIXEL_RATIO = 3;
 
 QUALITIES = {
-    1: {
+    3: {
         'zoom': 48,
         'regular': 35
     }, //Morgan made up the 'default' from a nexus 5, 'zoom' value is a guess
@@ -17,7 +17,7 @@ QUALITIES = {
         'zoom': 60,
         'regular': 48
     }, //Both values are guesses
-    3: {
+    1: {
         'zoom': 70,
         'regular': 60
     } //Both values are guesses
