@@ -123,6 +123,7 @@ function loadNextPage(event) {
 }
 
 $(document).ready(function() {
+    console.log('webp'+Modernizr.webp);
     loadImages();
     $('#load-more').click(loadNextPage);
 });
