@@ -60,13 +60,9 @@ function getImageFormat(){
 	}
 }
 
-function getImageUrl(originalUrl, width, quality) {
-	var format = getImageFormat();
-	var pixelStep = PIXEL_STEP;
+function getImageUrl(originalUrl, width, quality,format) {
 
-	var steppedWidth = roundToStep(width, pixelStep);
-
-	var url = IMAGE_RESIZE_PROXY_BASE + format + quality + '/' + steppedWidth + '/' + originalUrl;
+	var url = IMAGE_RESIZE_PROXY_BASE + format + quality + '/' + width + '/' + originalUrl;
 	var forceFallback = getUrlOverride(FALLBACK_TRIGGER_PARAMETER,'false');
 	if(forceFallback === 'true'){
 		url = 'http://www.mec.ca/Sitemap/404_page.jsp?type=404';
@@ -87,13 +83,22 @@ function getPixelRatio() {
 	return getUrlOverride(PIXEL_RATIO_OVERRIDE_PARAMETER, pixelRatio );
 }
 
+function getLookupKeyFromPixelRatio(pixelRatio){
+	var cleanedPixelRatio = Math.floor(pixelRatio); //Error on the side of quality
+	if (cleanedPixelRatio > MAXIMUM_PIXEL_RATIO){
+		cleanedPixelRatio = MAXIMUM_PIXEL_RATIO;
+	}
+	if (cleanedPixelRatio < MINIMUM_PIXEL_RATIO){
+		cleanedPixelRatio = MINIMUM_PIXEL_RATIO;
+	}
+	return cleanedPixelRatio;
+}
+
 function getQuality(pixelRatio, zoom) {
 	var quality;
-	var roundedPixelRatio = Math.floor(pixelRatio); //Error on the side of quality
-	var qualityLookupKey = Math.min(MAXIMUM_PIXEL_RATIO, roundedPixelRatio); //pixel ratio higher than 3X will get same quality as 3X
-	qualityLookupKey = Math.max(MINIMUM_PIXEL_RATIO, roundedPixelRatio); //pixel ratio less than 1X will get same quality as 1X
+	var key = getLookupKeyFromPixelRatio();
 
-	var qualityObject = QUALITIES[qualityLookupKey];
+	var qualityObject = QUALITIES[key];
 
 	if (zoom) {
 		quality = qualityObject.zoom;
@@ -111,9 +116,12 @@ function loadImage($image){
 	
 	var $parent = $image.parent();
 	var cssWidth = $parent.width();
-	var maxWidth = Math.ceil(cssWidth * pixelRatio);
+	var targetWidth = Math.ceil(cssWidth * pixelRatio);
 
-	var optimizedUrl = getImageUrl(dataSrc, maxWidth, quality);
+	var format = getImageFormat();
+	var steppedTargetWidth = roundToStep(target, PIXEL_STEP);
+
+	var optimizedUrl = getImageUrl(dataSrc, steppedTargetWidth, quality,format);
 
 	$image.removeAttr(IMAGE_URL_ATTRIBUTE_NAME).attr('src', optimizedUrl);
 	$image.on('error', insertFallbackImageUrl);
