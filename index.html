@@ -38,15 +38,15 @@
         </div>
       </div>
       <form method="GET">
-          Override Pixel Ratio:
           <select name='pr'>
+              <option selected value="">Override Pixel Ratio</option>
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option></select>
-          Override Quality:
           <select name='q'>
+             <option selected value="">Override Quality</option>
              <option value="5">5</option>
-             <option value="10"10</option>
+             <option value="10">10</option>
              <option value="15">15</option>
              <option value="20">20</option>
              <option value="25">30</option>
@@ -66,10 +66,10 @@
              <option value="95">95</option>
              <option value="100">100</option>              
              </select>
-             Set to fallback mode:
              <select name='fb'>
-                <option value="true">true</option>
-                <option value="false">false</option>
+                <option selected value="">Set Fallback</option>
+                <option value="true">No Fallback</option>
+                <option value="false">Fallback from 404 Images</option>
              </select>
              <button>Go</button>
       </form>
