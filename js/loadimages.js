@@ -1,3 +1,7 @@
+QUALITY_OVERRIDE_PARAMETER = 'q';
+PIXEL_RATIO_OVERRIDE_PARAMETER = 'pr';
+FALLBACK_TRIGGER_PARAMETER = 'fb';
+
 qualities = {
     3: {
         'zoom': 48,
@@ -64,7 +68,7 @@ function getPixelRatio() {
     } else {
         pixelRatio = devicePixelRatio;
     }
-    return getUrlOverride('pr', pixelRatio );
+    return getUrlOverride(PIXEL_RATIO_OVERRIDE_PARAMETER, pixelRatio );
 }
 
 function getQuality(pixelRatio, zoom) {
@@ -80,7 +84,7 @@ function getQuality(pixelRatio, zoom) {
     } else {
         quality = qualityObject.regular;
     }
-    return getUrlOverride('q', quality);
+    return getUrlOverride(QUALITY_OVERRIDE_PARAMETER, quality);
 }
 
 
@@ -100,7 +104,7 @@ function loadImages(event) {
 
         var optimizedUrl = getImageUrl(dataSrc, maxWidth, quality);
         console.log(optimizedUrl);
-        if (window.location.href.indexOf("fallback") > -1) {
+        if (window.location.href.indexOf(FALLBACK_TRIGGER_PARAMETER) > -1) {
             optimizedUrl = 'fail://this-is-not-a-valid-url-because-you-specified-fallback.jpg';
         }
 
