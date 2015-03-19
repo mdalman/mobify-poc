@@ -2,8 +2,14 @@ QUALITY_OVERRIDE_PARAMETER = 'q';
 PIXEL_RATIO_OVERRIDE_PARAMETER = 'pr';
 FALLBACK_TRIGGER_PARAMETER = 'fb';
 
-qualities = {
-    3: {
+IMAGE_URL_ATTRIBUTE_NAME = 'data-src'
+IMAGE_URL_FALLBACK_ATTRIBUTE_NAME = 'data-fallback-src'
+
+MINIMUM_PIXEL_RATIO = 1;
+MAXIMUM_PIXEL_RATIO = 3
+
+QUALITIES = {
+    MAXIMUM_PIXEL_RATIO: {
         'zoom': 48,
         'regular': 35
     }, //Morgan made up the 'default' from a nexus 5, 'zoom' value is a guess
@@ -11,7 +17,7 @@ qualities = {
         'zoom': 60,
         'regular': 48
     }, //Both values are guesses
-    1: {
+    MINIMUM_PIXEL_RATIO: {
         'zoom': 70,
         'regular': 60
     } //Both values are guesses
@@ -30,13 +36,11 @@ function getUrlOverride(queryParameter, original) {
 
 function insertFallbackImageUrl(e) {
 
-    console.log('error world');
     var $image = $(e.target);
     $image.off('error'); //If we put another url in src that 404's we don't want an infinite loop
-
-    console.log($image);
-    var fallbackSrc = $image.attr('data-fallback-src');
-    console.log(fallbackSrc);
+    var fallbackSrc = $image.attr(IMAGE_URL_FALLBACK_ATTRIBUTE_NAME);
+    var src = $image.attr('src');
+    console.log('Error loading: '+src+' reverting to fallback: '+fallbackSrc);
     $image.attr('src', fallbackSrc);
 }
 
@@ -64,7 +68,7 @@ function getPixelRatio() {
     var pixelRatio;
 
     if (typeof devicePixelRatio === "undefined") {
-        pixelRatio = 1;
+        pixelRatio = MINIMUM_PIXEL_RATIO;
     } else {
         pixelRatio = devicePixelRatio;
     }
@@ -74,10 +78,10 @@ function getPixelRatio() {
 function getQuality(pixelRatio, zoom) {
     var quality;
     var roundedPixelRatio = Math.floor(pixelRatio); //Error on the side of quality
-    var qualityLookupKey = Math.min(3, roundedPixelRatio); //pixel ratio higher than 3X will get same quality as 3X
-    qualityLookupKey = Math.max(1, roundedPixelRatio); //pixel ratio less than 1X will get same quality as 1X
+    var qualityLookupKey = Math.min(MAXIMUM_PIXEL_RATIO, roundedPixelRatio); //pixel ratio higher than 3X will get same quality as 3X
+    qualityLookupKey = Math.max(MINIMUM_PIXEL_RATIO, roundedPixelRatio); //pixel ratio less than 1X will get same quality as 1X
 
-    var qualityObject = qualities[qualityLookupKey];
+    var qualityObject = QUALITIES[qualityLookupKey];
 
     if (zoom) {
         quality = qualityObject.zoom;
@@ -89,13 +93,12 @@ function getQuality(pixelRatio, zoom) {
 
 
 function loadImages(event) {
-    var $images = $('img:not([src])[data-src]');
-    console.log($images);
+    var $images = $('img:not([src])['+IMAGE_URL_ATTRIBUTE_NAME+']');
     $images.each(function (index, image) {
         var $image = $(image);
         var $parent = $image.parent();
         var cssWidth = $parent.width();
-        var dataSrc = $image.attr('data-src');
+        var dataSrc = $image.attr(IMAGE_URL_ATTRIBUTE_NAME);
 
         var pixelRatio = getPixelRatio();
         var quality = getQuality(pixelRatio);
@@ -108,7 +111,7 @@ function loadImages(event) {
             optimizedUrl = 'fail://this-is-not-a-valid-url-because-you-specified-fallback.jpg';
         }
 
-        $image.removeAttr('data-src').attr('src', optimizedUrl);
+        $image.removeAttr(IMAGE_URL_ATTRIBUTE_NAME).attr('src', optimizedUrl);
         $image.on('error', insertFallbackImageUrl);
     });
 }
