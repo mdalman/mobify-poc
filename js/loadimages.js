@@ -96,7 +96,7 @@ function getLookupKeyFromPixelRatio(pixelRatio){
 
 function getQuality(pixelRatio, zoom) {
 	var quality;
-	var key = getLookupKeyFromPixelRatio();
+	var key = getLookupKeyFromPixelRatio(pixelRatio);
 
 	var qualityObject = QUALITIES[key];
 
