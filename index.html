@@ -188,7 +188,11 @@
 <![endif]-->
 
 
-<script>window.jQuery || document.write('<script src="//cdnjs.cloudflare.com/ajax/libs/zepto/1.1.4/zepto.min.js"><\/script>')</script>
+<div id='jquery-wrapper'>
+
+</div>
+
+<script>window.jQuery || document.getElementById('jquery-wrapper').innerHTML += '<script src="//cdnjs.cloudflare.com/ajax/libs/zepto/1.1.4/zepto.min.js"><\/script>';</script>
 
 <!--  <script src="//cdnjs.cloudflare.com/ajax/libs/zepto/1.1.4/zepto.min.js"></script>-->
 <!--<script src="//mdalman.github.io/mobify-poc/js/jquery-stripped.min.js"></script> -->
