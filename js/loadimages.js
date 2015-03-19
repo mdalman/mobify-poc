@@ -113,7 +113,7 @@ function loadImage($image){
 
 	var pixelRatio = getPixelRatio();
 
-	var zoomable = $image.hasClass('zoomable-img');
+	var zoomable = $image.hasClass('img-zoomable');
 
 	var quality = getQuality(pixelRatio,zoomable);
 	
