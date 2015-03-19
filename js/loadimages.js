@@ -123,8 +123,7 @@ function loadImage($image){
 
 	var optimizedUrl = getImageUrl(dataSrc, steppedTargetWidth, quality,format);
 
-	$image.removeAttr(IMAGE_URL_ATTRIBUTE_NAME).attr('src', optimizedUrl);
-	$image.on('error', insertFallbackImageUrl);
+	$image.attr('src', optimizedUrl).on('error', insertFallbackImageUrl);
 }
 
 function loadImages(event) {
