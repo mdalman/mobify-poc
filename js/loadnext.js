@@ -1,3 +1,7 @@
+function getFallBackImageUrl(imageUrl){
+    return imageUrl.replace('/high-res/','/low-res/');
+}
+
 function loadNextPage(event) {
     event.preventDefault();
     var nextUrl = $('#load-more').attr('href');
@@ -6,7 +10,7 @@ function loadNextPage(event) {
         var items = [];
 
         $.each(data.images, function (index, imageUrl) {
-            var fallbackImageUrl = imageUrl.replace('/high-res/','/low-res/');
+            var fallbackImageUrl = getFallBackImageUrl(imageUrl);
             var htmlRow = '<div class="col-xs-6">' +
                             '<img class="img-responsive" ' +
                                  'data-src="' + imageUrl + '" ' +
@@ -27,7 +31,9 @@ function loadNextPage(event) {
 
 function clickImageHandler(event){
 	var $target = $(event.target);
-	$('.img-preview').removeAttr('src').attr('data-src', $target.attr('data-src'));
+	var imageUrl = $target.attr('data-src');
+	var fallbackImageUrl = getFallBackImageUrl(imageUrl);
+	$('.img-preview').removeAttr('src').attr('data-src', imageUrl).attr('data-fallback-src',fallbackImageUrl);
     	$('#img-modal').modal('show'); 
     	
     	$('#img-modal').on('shown.bs.modal', function (e) {
