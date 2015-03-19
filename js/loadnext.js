@@ -76,7 +76,7 @@ function loadImages(event) {
  //       opts.quality = quality;
         var maxWidth = Math.ceil(cssWidth * pixelRatio);
  //       var optimizedUrl = ResizeImages.getImageURL(dataSrc,opts);
-        console.log(optimizedUrl);
+
         var optimizedUrl = getImageUrl(dataSrc,maxWidth,quality);
         console.log(optimizedUrl);
         if(window.location.href.indexOf("fallback") > -1) {
