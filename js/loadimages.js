@@ -67,8 +67,8 @@ function getImageUrl(originalUrl, width, quality) {
 	var steppedWidth = roundToStep(width, pixelStep);
 
 	var url = IMAGE_RESIZE_PROXY_BASE + format + quality + '/' + steppedWidth + '/' + originalUrl;
-	var forceFallback = getUrlOverride(FALLBACK_TRIGGER_PARAMETER,false);
-	if(forceFallback){
+	var forceFallback = getUrlOverride(FALLBACK_TRIGGER_PARAMETER,'false');
+	if(forceFallback === 'true'){
 		url = 'http://www.mec.ca/Sitemap/404_page.jsp?type=404';
 	}
 	console.log('Optimized url: '+url);
