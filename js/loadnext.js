@@ -26,10 +26,10 @@ function loadNextPage(event) {
 
 function clickImageHandler(event){
 	var $target = $(event.target);
-	$('.imagepreview').removeAttr('src').attr('data-src', $target.attr('data-src'));
-    	$('#imagemodal').modal('show'); 
+	$('.img-preview').removeAttr('src').attr('data-src', $target.attr('data-src'));
+    	$('#img-modal').modal('show'); 
     	
-    	$('#imagemodal').on('shown.bs.modal', function (e) {
+    	$('#img-modal').on('shown.bs.modal', function (e) {
   		loadImages();
 	})
         
