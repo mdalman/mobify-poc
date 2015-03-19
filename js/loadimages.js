@@ -119,6 +119,8 @@ function loadImage($image){
 	
 	var $parent = $image.parent();
 	var cssWidth = $parent.width();
+	console.log('cssWidth: '+cssWidth);
+	console.log('pixelRatio: '+pixelRatio);
 	var targetWidth = Math.ceil(cssWidth * pixelRatio);
 
 	var format = getImageFormat();
