@@ -28,14 +28,25 @@ function insertFallbackImageUrl(e){
     $image.attr('src',fallbackSrc);
 }
 
+function roundToStep(rawValue,step){
+    return Math.ceil((rawValue) / step) * step;
+}
+
+
 function getImageUrl(originalUrl,width,quality){
     var format;
+    var pixelStep = 100;
+    
+    var steppedWith = roundToStep(width,pixelStep);
+    
     if(Modernizr.webp){
                   format = 'webp';
     }
     else{
                  format = 'jpg';
     }
+    
+    
               
     return '//ir0.mobify.com/project-mobify-poc/c8/'+format+quality+'/'+width+'/'+originalUrl;
 }
