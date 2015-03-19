@@ -29,7 +29,7 @@ function clickImageHandler(event){
 	$('.imagepreview').removeAttr('src').attr('data-src', $target.attr('data-src'));
     	$('#imagemodal').modal('show'); 
     	
-    	$('#imagemodal').on('hidden.bs.modal', function (e) {
+    	$('#imagemodal').on('shown.bs.modal', function (e) {
   		loadImages();
 	})
         
