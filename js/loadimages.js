@@ -119,7 +119,7 @@ function loadImage($image){
 	var targetWidth = Math.ceil(cssWidth * pixelRatio);
 
 	var format = getImageFormat();
-	var steppedTargetWidth = roundToStep(target, PIXEL_STEP);
+	var steppedTargetWidth = roundToStep(targetWidth, PIXEL_STEP);
 
 	var optimizedUrl = getImageUrl(dataSrc, steppedTargetWidth, quality,format);
 
