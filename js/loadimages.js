@@ -145,7 +145,7 @@ function loadImage($image){
 	var optimizedUrl = getImageUrl(dataSrc, steppedTargetWidth, quality,format);
 //	$image.attr('src', optimizedUrl).on('error', insertFallbackImageUrl);
         var tinySrc = $image.attr(IMAGE_URL_ATTRIBUTE_NAME);
-	$image.attr('src', optimizedUrl).attr('data-tiny-src',tinySrc).removeAttr(IMAGE_URL_ATTRIBUTE_NAME).on('error', insertFallbackImageUrl);
+	$image.attr('src', optimizedUrl).attr('data-tiny-src',tinySrc).on('error', insertFallbackImageUrl);
 }
 
 function loadImages(event) {
