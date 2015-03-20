@@ -144,7 +144,7 @@ function loadImage($image){
 
 	var optimizedUrl = getImageUrl(dataSrc, steppedTargetWidth, quality,format);
 //	$image.attr('src', optimizedUrl).on('error', insertFallbackImageUrl);
-        var tinySrc = $image.attr(IMAGE_URL_ATTRIBUTE_NAME);
+        var tinySrc = $image.attr('src');
 	$image.attr('src', optimizedUrl).attr('data-tiny-src',tinySrc).on('error', insertFallbackImageUrl);
 }
 
