@@ -32,11 +32,11 @@ function loadNextPage(event) {
 function clickImageHandler(event){
 	var $target = $(event.target);
 	var imageUrl = $target.attr('data-src');
+	var imageSrc = $target.attr('src');
 	
 	var fallbackImageUrl = $target.attr('data-fallback-src');
 
-	$('.img-preview').off('error').removeAttr('src').attr('data-src', imageUrl).attr('data-fallback-src',fallbackImageUrl);
-    	$('#img-modal').modal('show'); 
+	$('.img-preview').off('error').attr('src',imageSrc).attr('data-src', imageUrl).attr('data-fallback-src',fallbackImageUrl);    	$('#img-modal').modal('show'); 
     	
     	$('#img-modal').on('shown.bs.modal', function (e) {
   		loadImages();
