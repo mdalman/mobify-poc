@@ -263,7 +263,7 @@
 
 <!--  <script src="//cdnjs.cloudflare.com/ajax/libs/zepto/1.1.4/zepto.min.js"></script>-->
 <!--<script src="//mdalman.github.io/mobify-poc/js/jquery-stripped.min.js"></script> -->
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="//mdalman.github.io/mobify-poc/js/purl.js"></script> 
 <script src="//mdalman.github.io/mobify-poc/js/loadimages.js"></script> 
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
@@ -278,6 +278,32 @@
                  console.log("Time until everything loaded: ", Date.now()-timerStart);
                  $('#finished-loading').append(Date.now()-timerStart);
              });
-        </script>
+        </script>-->
+
+<script type="text/javascript">
+            var options = {
+            updateOnResizeDown : true,
+            updateOnPinchZoom : true,
+            fitImgTagToContainerWidth: true,
+            fitImgTagToContainerHeight: true,
+            pixelStep : 10,
+            onChangeParamOverride: function(w, h) {
+            var dpr = Math.ceil(window.devicePixelRatio*10) /10;
+            return {"txt": "w:" + w + " h:" +h + " dpr:" + dpr,
+            "txtalign": "center,bottom",
+            "txtsize": 20,
+            "txtfont":"Helvetica%20Neue,bold",
+            "txtclr":"ffffffff",
+            "txtpad":20,
+            "txtfit":'max',
+            "exp":-2
+            }
+            }
+            };
+            imgix.onready(function() {
+            imgix.fluid(options);
+            });
+</script>
+
 
 </html>
