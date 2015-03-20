@@ -29,6 +29,13 @@ QUALITIES = {
 	} //Both values are guesses
 };
 
+DEBUG = false;
+
+if (DEBUG === false){
+	console.log = function() {}
+}
+
+
 function getUrlOverride(queryParameter, original) {
 	var override = purl(window.location).param(queryParameter);
 	if (typeof override === "undefined" || override === "") {
