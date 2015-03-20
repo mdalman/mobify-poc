@@ -150,7 +150,7 @@ function loadImage($image){
 
 function loadImages(event) {
 //	var $images = $('img:not([src])['+IMAGE_URL_ATTRIBUTE_NAME+']');
-	var $images = $('img['+IMAGE_URL_ATTRIBUTE_NAME+']');
+	var $images = $('img:not([data-tiny-src])['+IMAGE_URL_ATTRIBUTE_NAME+']');
 	$images.each(function (index, image) {
 		var $image = $(image);
 		loadImage($image);
