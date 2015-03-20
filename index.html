@@ -78,15 +78,10 @@
              <button class="btn btn-default btn-lg">Go</button>
       </form>
       
-      
-       <div class="col-xs-6">
-        <img class="imgix-fluid img-responsive" data-src="http://mdalman.imgix.net/high-res/5040017_VLT43_ALT-LEFT.jpg">
-      </div>
- 
- 
+     
       <div class="col-xs-6">
         <img class="img-responsive" 
-        src="http://ir0.mobify.com/project-mobify-poc/c8/jpg50/100/http://mdalman.github.io/mobify-poc/images/high-res/5040017_VLT43_ALT-LEFT.jpg"
+        src="http://ir0.mobify.com/project-mobify-poc/c0/jpg50/100/http://mdalman.github.io/mobify-poc/images/high-res/5040017_VLT43_ALT-LEFT.jpg"
         data-fallback-src="http://mdalman.github.io/mobify-poc/images/low-res/5040017_VLT43_ALT-LEFT.jpg"
         data-src="http://mdalman.github.io/mobify-poc/images/high-res/5040017_VLT43_ALT-LEFT.jpg"/>
       </div>
@@ -268,7 +263,7 @@
 
 <!--  <script src="//cdnjs.cloudflare.com/ajax/libs/zepto/1.1.4/zepto.min.js"></script>-->
 <!--<script src="//mdalman.github.io/mobify-poc/js/jquery-stripped.min.js"></script> -->
-<!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="//mdalman.github.io/mobify-poc/js/purl.js"></script> 
 <script src="//mdalman.github.io/mobify-poc/js/loadimages.js"></script> 
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
@@ -283,32 +278,8 @@
                  console.log("Time until everything loaded: ", Date.now()-timerStart);
                  $('#finished-loading').append(Date.now()-timerStart);
              });
-        </script>-->
-<script src="http://www.imgix.com/libraries/imgix.js" type="text/javascript"></script>
-<script type="text/javascript">
-            var options = {
-            updateOnResizeDown : true,
-            updateOnPinchZoom : true,
-            fitImgTagToContainerWidth: true,
-            fitImgTagToContainerHeight: false,
-            pixelStep : 10,
-            onChangeParamOverride: function(w, h) {
-            var dpr = Math.ceil(window.devicePixelRatio*10) /10;
-            return {"txt": "w:" + w + " h:" +h + " dpr:" + dpr,
-            "txtalign": "center,bottom",
-            "txtsize": 20,
-            "txtfont":"Helvetica%20Neue,bold",
-            "txtclr":"ffffffff",
-            "txtpad":20,
-            "txtfit":'max',
-            "exp":-2
-            }
-            }
-            };
-            imgix.onready(function() {
-            imgix.fluid(options);
-            });
-</script>
+        </script>
+
 
 
 </html>
