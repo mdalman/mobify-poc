@@ -24,7 +24,7 @@ function loadNextPage(event) {
         });
         html = items.join("");
 
-        $('#load-more-container').before(html);
+        $('#product-row').append(html);
         loadImages();
         registerImageClicks();
     });
