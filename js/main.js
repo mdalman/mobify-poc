@@ -38,7 +38,8 @@ function clickImageHandler(event){
 	
 	var fallbackImageUrl = $target.attr('data-fallback-src');
 
-	$('.img-preview').off('error').attr('src',imageSrc).attr('data-src', imageUrl).attr('data-fallback-src',fallbackImageUrl);    	$('#img-modal').modal('show'); 
+	$('.img-preview').off('error').attr('').removeAttr('data-tiny-src').attr('src',imageSrc).attr('data-src', imageUrl).attr('data-fallback-src',fallbackImageUrl);    	
+	$('#img-modal').modal('show'); 
     	
     	$('#img-modal').on('shown.bs.modal', function (e) {
   		loadImages();
