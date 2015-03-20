@@ -143,12 +143,13 @@ function loadImage($image){
 	var steppedTargetWidth = roundToStep(targetWidth, PIXEL_STEP);
 
 	var optimizedUrl = getImageUrl(dataSrc, steppedTargetWidth, quality,format);
-
-	$image.attr('src', optimizedUrl).on('error', insertFallbackImageUrl);
+//	$image.attr('src', optimizedUrl).on('error', insertFallbackImageUrl);
+	$image.attr('src', optimizedUrl).removeAttr(IMAGE_URL_ATTRIBUTE_NAME).on('error', insertFallbackImageUrl);
 }
 
 function loadImages(event) {
-	var $images = $('img:not([src])['+IMAGE_URL_ATTRIBUTE_NAME+']');
+//	var $images = $('img:not([src])['+IMAGE_URL_ATTRIBUTE_NAME+']');
+	var $images = $('img:['+IMAGE_URL_ATTRIBUTE_NAME+']');
 	$images.each(function (index, image) {
 		var $image = $(image);
 		loadImage($image);
