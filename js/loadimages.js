@@ -55,11 +55,13 @@ function roundToStep(rawValue, step) {
 }
 
 function getImageFormat(){
-	if (Modernizr.webp) {
-		return 'webp';
-	} else {
-		return 'jpg';
+	try{
+		if (Modernizr.webp) {
+			return 'webp';
+		}	
 	}
+	catch(err){}
+	return 'jpg';
 }
 
 function getImageUrl(originalUrl, width, quality,format) {
@@ -77,11 +79,13 @@ function getImageUrl(originalUrl, width, quality,format) {
 function getPixelRatio() {
 	var pixelRatio;
 
-	if (typeof devicePixelRatio === "undefined") {
-		pixelRatio = MINIMUM_PIXEL_RATIO;
-	} else {
-		pixelRatio = devicePixelRatio;
+	try{
+		pixelRatio = devicePixelRatio;	
 	}
+	catch(err){
+		pixelRatio = MINIMUM_PIXEL_RATIO;
+	}
+
 	return getUrlOverride(PIXEL_RATIO_OVERRIDE_PARAMETER, pixelRatio );
 }
 
