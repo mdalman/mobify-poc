@@ -73,7 +73,7 @@ function getImageFormat(){
 
 function getImageUrl(originalUrl, width, quality,format) {
 
-	var url = IMAGE_RESIZE_PROXY_BASE + format + quality + '/' + width + '/' + originalUrl;
+	var url = IMAGE_RESIZE_PROXY_BASE + format + quality + '/' + width + '/http:' + originalUrl;
 	var forceFallback = getUrlOverride(FALLBACK_TRIGGER_PARAMETER,'false');
 	if(forceFallback === 'true'){
 		url = 'http://www.mec.ca/Sitemap/404_page.jsp?type=404';
