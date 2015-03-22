@@ -291,7 +291,7 @@
              });
              $(window).load(function() {
                  console.log("Time until everything loaded: ", Date.now()-timerStart);
-                 $('#finished-loading').append(Date.now()-timerStart);
+                 $('#finished-loading').html(Date.now()-timerStart);
                  $('#image-weight').append(getTotalImageBandwidth());
              });
         </script>
