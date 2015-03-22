@@ -82,8 +82,9 @@ function getImgixUrl(originalUrl, width, quality,format){
 	var baseUrl = originalUrl.replace(/^(https?:)?\/\/mdalman.github.io\/mobify-poc\/images\//,
 	                                    '//mdalman.imgix.net/');
 	
-	var optimizedUrl = baseUrl + '?auto=format'+'&w='+width+'&q='+quality;                                
-	return imgixBase;
+	var processOptions = 'auto=format'+'&w='+width+'&q='+quality;
+	var optimizedUrl = baseUrl + '?' + processOptions;                              
+	return optimizedUrl;
 }
 
 function getMobifyUrl(originalUrl, width, quality,format){
