@@ -22,7 +22,9 @@ function getTotalImageBandwidth(){
     $('img').each(function (index, img) {
     	try{
 	        var urlToCheck = img.src;
-	        sum += getFileSize(urlToCheck);
+	        if(urlToCheck !== ''){
+	           sum += getFileSize(urlToCheck);
+	        }
     	}
     	catch(error){console.log(error);}
     });
