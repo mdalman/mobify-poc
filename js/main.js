@@ -54,7 +54,8 @@ function registerImageClicks(){
 $(document).ready(function() {
     $('select[name="q"] option[value="'+$.url(window.location).param('q')+'"]').prop('selected',true);
     $('select[name="pr"] option[value="'+$.url(window.location).param('pr')+'"]').prop('selected',true); 
-    $('select[name="fb"] option[value="'+$.url(window.location).param('fb')+'"]').prop('selected',true);     
+    $('select[name="fb"] option[value="'+$.url(window.location).param('fb')+'"]').prop('selected',true); 
+    $('select[name="v"] option[value="'+$.url(window.location).param('v')+'"]').prop('selected',true);     
 	
     $('#pixel-ratio').append(getPixelRatio()+'X');
     $('#zoom-quality').append(getQuality(getPixelRatio(),true)+'%');
