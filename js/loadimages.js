@@ -82,7 +82,7 @@ function getMobifyUrl(originalUrl, width, quality,format){
 }
 
 function getOptimizedUrl(originalUrl, width, quality,format){
-	var vendor = getUrlOverride(VENDOR_PARAMETER,'mobify');
+	var vendor = getUrlOverride(VENDOR_OVERRIDE_PARAMETER,'mobify');
 	if (vendor === 'imgix'){
 		return getImgixUrl(originalUrl, width, quality,format)
 		
