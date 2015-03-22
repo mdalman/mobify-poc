@@ -71,10 +71,28 @@ function getImageFormat(){
 	return 'jpg';
 }
 
-function getImageUrl(originalUrl, width, quality,format) {
-        var cleanedOriginal = originalUrl.replace(/^\/\//, 'http://'); //put a protocol on if none
+function getImgixUrl(originalUrl, width, quality,format){
+	return '';
+}
 
-	var url = IMAGE_RESIZE_PROXY_BASE + format + quality + '/' + width + '/' + cleanedOriginal;
+function getMobifyUrl(originalUrl, width, quality,format){
+        var cleanedOriginal = originalUrl.replace(/^\/\//, 'http://'); //put a protocol on if none
+	return IMAGE_RESIZE_PROXY_BASE + format + quality + '/' + width + '/' + cleanedOriginal;	
+}
+
+function getOptimizedUrl(originalUrl, width, quality,format){
+	var vendor = getUrlOverride(VENDOR_PARAMETER,'mobify');
+	if (vendor === 'imgix'){
+		return getImgixUrl(originalUrl, width, quality,format)
+		
+	}
+	else{
+		return getMobifyUrl(originalUrl, width, quality,format);
+	}
+}
+
+function getImageUrl(originalUrl, width, quality,format) {
+        var url = getOptimizedUrl(originalUrl, width, quality,format)
 	var forceFallback = getUrlOverride(FALLBACK_TRIGGER_PARAMETER,'false');
 	if(forceFallback === 'true'){
 		url = '//www.mec.ca/Sitemap/404_page.jsp?type=404';
