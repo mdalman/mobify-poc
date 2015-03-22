@@ -79,8 +79,10 @@ function getImgixUrl(originalUrl, width, quality,format){
 	
 	
 	'http://mdalman.imgix.net/high-res/5040017_VLT43_ALT-LEFT.jpg?auto=format&fit=crop&h=480&q=80&w=940'
-	var imgixBase = originalUrl.replace(/^(https?:)?\/\/mdalman.github.io\/mobify-poc\/images\//,
-	                                    '//mdalman.imgix.net/')
+	var baseUrl = originalUrl.replace(/^(https?:)?\/\/mdalman.github.io\/mobify-poc\/images\//,
+	                                    '//mdalman.imgix.net/');
+	
+	var optimizedUrl = baseUrl + '?auto=format'+'&w='+width+'&q='+quality;                                
 	return imgixBase;
 }
 
