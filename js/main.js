@@ -20,8 +20,11 @@ function getFileSize(url) {
 function getTotalImageBandwidth(){
     var sum = 0;
     $('img').each(function (index, img) {
-        var urlToCheck = img.src;
-        sum += getFileSize(urlToCheck);
+    	try{
+	        var urlToCheck = img.src;
+	        sum += getFileSize(urlToCheck);
+    	}
+    	catch(error){console.log(error);}
     });
     return Math.ceil(sum/Math.pow(2, 10));
 }
