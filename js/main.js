@@ -1,4 +1,4 @@
-function synchronousGetJson(url) {
+function synchronousGetJson(url,data) {
     var returnValue;
     $.ajax({
         type: 'GET',
@@ -7,14 +7,14 @@ function synchronousGetJson(url) {
         success: function (data) {
             returnValue = data;
         },
-        data: {},
+        data: data,
         async: false
     });
     return returnValue;
 }
 
 function getFileSize(url) {
-    return synchronousGetJson("http://69.164.195.251/filesize/?urltocheck=" + url).size;
+    return synchronousGetJson("http://69.164.195.251/filesize/", {'urltocheck':url}).size;
 }
 
 function getTotalImageBandwidth(){
