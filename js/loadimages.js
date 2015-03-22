@@ -1,3 +1,5 @@
+DEBUG = true;
+
 QUALITY_OVERRIDE_PARAMETER = 'q';
 PIXEL_RATIO_OVERRIDE_PARAMETER = 'pr';
 FALLBACK_TRIGGER_PARAMETER = 'fb';
@@ -30,7 +32,7 @@ QUALITIES = {
 	} //Both values are guesses
 };
 
-DEBUG = false;
+
 
 if (DEBUG === false){
 	console.log = function() {}
@@ -73,7 +75,13 @@ function getImageFormat(){
 }
 
 function getImgixUrl(originalUrl, width, quality,format){
-	return '';
+	var IMAGES_BASE_URL = '//mdalman.github.io/mobify-poc/images/';
+	
+	
+	'http://mdalman.imgix.net/high-res/5040017_VLT43_ALT-LEFT.jpg?auto=format&fit=crop&h=480&q=80&w=940'
+	var imgixBase = originalUrl.replace(/^(https?:)?\/\/mdalman.github.io\/mobify-poc\/images\//,
+	                                    '//mdalman.imgix.net/')
+	return imgixBase;
 }
 
 function getMobifyUrl(originalUrl, width, quality,format){
@@ -84,6 +92,7 @@ function getMobifyUrl(originalUrl, width, quality,format){
 function getOptimizedUrl(originalUrl, width, quality,format){
 	var vendor = getUrlOverride(VENDOR_OVERRIDE_PARAMETER,'mobify');
 	if (vendor === 'imgix'){
+		console.log('imgix');
 		return getImgixUrl(originalUrl, width, quality,format)
 		
 	}
