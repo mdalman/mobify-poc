@@ -1,3 +1,32 @@
+function synchronousGetJson(url) {
+    var returnValue;
+    $.ajax({
+        type: 'GET',
+        url: url,
+        dataType: 'json',
+        success: function (data) {
+            returnValue = data;
+        },
+        data: {},
+        async: false
+    });
+    return returnValue;
+}
+
+function getFileSize(url) {
+    return synchronousGetJson("http://69.164.195.251/filesize/?urltocheck=" + url).size;
+}
+
+function getTotalImageBandwidth(){
+    var sum = 0;
+    $('img').each(function (index, img) {
+        var $img = $(img);
+        var urlToCheck = $img.attr('src');
+        sum += getFileSize(urlToCheck);
+    });
+    return Math.ceil(sum/Math.pow(2, 10));
+}
+
 function getFallBackImageUrl(imageUrl){
     return imageUrl.replace('/high-res/','/low-res/');
 }
@@ -60,6 +89,8 @@ $(document).ready(function() {
     $('#pixel-ratio').append(getPixelRatio()+'X');
     $('#zoom-quality').append(getQuality(getPixelRatio(),true)+'%');
     $('#regular-quality').append(getQuality(getPixelRatio(),false)+'%');    
+      
+    
   //  console.log('webp'+Modernizr.webp);
     loadImages();
     $('#load-more').click(loadNextPage);
