@@ -1,35 +1,25 @@
-function synchronousGetJson(url,data) {
-    var returnValue;
-    $.ajax({
-        type: 'GET',
-        url: url,
-        dataType: 'json',
-        success: function (data) {
-            returnValue = data;
-        },
-        data: data,
-        async: false
-    });
-    return returnValue;
-}
-
-function getFileSize(url) {
-    return synchronousGetJson("http://69.164.195.251/filesize/", {'urltocheck':url}).size;
-}
-
-function getTotalImageBandwidth(){
+function getTotalImageBandwidth(elements){
     var sum = 0;
+    var requests = []
     $('img').each(function (index, img) {
     	try{
 	        var urlToCheck = img.src;
 	        if(urlToCheck !== ''){
-	           sum += getFileSize(urlToCheck);
+                var request = $.getJSON("http://69.164.195.251/filesize/", 
+                          {'urltocheck':urlToCheck},
+                          function(data){sum+=data.size;});
+                requests.push(request);                
 	        }
     	}
     	catch(error){console.log(error);}
     });
-    return Math.ceil(sum/Math.pow(2, 10));
-}
+    
+    $.when.apply(this,requests).then(function( x ) {
+      var kbs = Math.ceil(sum/Math.pow(2, 10));
+      
+      elements.html(kbs+'kb');
+    });
+ }
 
 function getFallBackImageUrl(imageUrl){
     return imageUrl.replace('/high-res/','/low-res/');
