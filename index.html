@@ -37,9 +37,9 @@
              <li>This device has a pixel ratio of : <span id="pixel-ratio"></span></li>
              <li>Requested zoom quality : <span id="zoom-quality"></span></li>
              <li>Requested regular quality : <span id="regular-quality"></span></li>
-             <li>Dom ready in : <span id="dom-ready"></span> ms.</li>
+             <li>Dom ready in : <span id="dom-ready">Rendering...</span> ms.</li>
              <li>Finished loading in : <span id="finished-loading"></span> ms.</li>
-             <li>Final size of images : <span id="image-weight"></span> kb.</li>
+             <li>Final size of images : <span id="image-weight">calculating...</span> kb.</li>
            </ul>
         </div>
       </div>
@@ -287,13 +287,13 @@
 <script type="text/javascript">
              $(document).ready(function() {
                  console.log("Time until DOMready: ", Date.now()-timerStart);
-                 $('#dom-ready').append(Date.now()-timerStart);
+                 $('#dom-ready').html(Date.now()-timerStart);
              });
              $(window).load(function() {
                  console.log("Time until everything loaded: ", Date.now()-timerStart);
                  $('#finished-loading').html(Date.now()-timerStart);
                  setTimeout(function(){
-                        $('#image-weight').append(getTotalImageBandwidth());     
+                        $('#image-weight').html(getTotalImageBandwidth());     
                  },1000);
                  
              });
