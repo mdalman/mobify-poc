@@ -292,13 +292,8 @@
              $(window).load(function() {
                  console.log("Time until everything loaded: ", Date.now()-timerStart);
                  $('#finished-loading').html((Date.now()-timerStart)+' ms');
-                 setTimeout(function(){
-                        $('#image-weight').html(getTotalImageBandwidth()+' kb');     
-                 },1000);
+                 getTotalImageBandwidth($('#image-weight'));
                  
              });
         </script>
-
-
-
 </html>
