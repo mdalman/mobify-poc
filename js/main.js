@@ -97,4 +97,17 @@ $(document).ready(function () {
 
 
     registerImageClicks();
+    
+});
+
+$(document).ready(function() {
+             console.log("Time until DOMready: ", Date.now()-timerStart);
+             $('#dom-ready').html((Date.now()-timerStart)+' ms');
+         });
+         
+$(window).load(function() {
+    console.log("Time until everything loaded: ", Date.now()-timerStart);
+    $('#finished-loading').html((Date.now()-timerStart)+' ms');
+    getTotalImageBandwidth($('#image-weight'));
+ 
 });
