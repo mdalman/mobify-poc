@@ -2,9 +2,18 @@
 
 <html lang="en">
 <head>
+
+<script type="text/javascript">
+            var timerStart = Date.now();
+        </script>
+
 <!-- MOBIFY - DO NOT ALTER - PASTE IMMEDIATELY AFTER OPENING HEAD TAG -->
+
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
-<script src="//mdalman.github.io/mobify-poc/js/modernizr.js"></script> 
+
+
+
+ 
  <style>.img-responsive {width:100% !important;height:auto !important;}
         div.col-xs-6{padding:0px !important;}
  </style>
@@ -27,165 +36,268 @@
   <div class="container-fluid">
       <div class="row">
         <div class="col-xs-12">
-           <h2>Override the default behaviour in the URL like this:</h2>
            <ul>
-             <li>Pixel Ratio <a href="?pr=2">?pr=2</a></li>
-             <li>Quality <a href="?q=30">?q=30</a></li>
-             <li>Quality and Pixel Ratio <a href="?q=30&pr=2">?q=30&pr=2</a></li>
-             <li>Fallback: <a href="?fb=true">?fb=true</a></li>
+             <li>This device has a pixel ratio of : <span id="pixel-ratio"></span></li>
+             <li>Requested zoom quality : <span id="zoom-quality"></span></li>
+             <li>Requested regular quality : <span id="regular-quality"></span></li>
+             <li>Dom ready in : <span id="dom-ready">rendering...</span></li>
+             <li>Finished loading in : <span id="finished-loading">downloading images...</span></li>
+             <li>Final size of images : <span id="image-weight">calculating...</span></li>
            </ul>
         </div>
       </div>
+      <form  class="form-inline .input-lg" method="GET">
+          <select  class="form-control" name='pr'>
+              <option selected value="">No Pixel Ratio Override</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option></select>
+          <select  class="form-control .input-lg" name='q'>
+             <option selected value="">No Quality Override</option>
+             <option value="5">5</option>
+             <option value="10">10</option>
+             <option value="15">15</option>
+             <option value="20">20</option>
+             <option value="25">25</option>
+             <option value="30">30</option>              
+             <option value="35">35</option>
+             <option value="40">40</option>
+             <option value="45">45</option>
+             <option value="50">50</option>
+             <option value="55">55</option>
+             <option value="60">60</option>
+             <option value="65">65</option>
+             <option value="70">70</option>
+             <option value="75">75</option>
+             <option value="80">80</option>    
+             <option value="85">85</option>
+             <option value="90">90</option>   
+             <option value="95">95</option>
+             <option value="100">100</option>              
+             </select>
+             <select class="form-control .input-lg" name='fb'>
+                <option selected value="">No Breakages</option>
+                <option value="true">404 Image Resizer</option>
+             </select>
+             <select class="form-control .input-lg" name='v'>
+                <option selected value="mobify">Mobify</option>
+                <option value="imgix">Imgix</option>
+             </select>
+             
+             <button class="btn btn-default btn-lg">Go</button>
+      </form>
+      
+
+    <div id="product-row" class="row">            
+     <div class="col-xs-6 col-sm-4 col-md-3 col-md-2">
+        <img class="img-responsive" 
+        src="//ir0.mobify.com/project-mobify-poc/c8/jpg50/100/http://mdalman.github.io/mobify-poc/images/high-res/5040017_VLT43_ALT-LEFT.jpg"
+        data-fallback-src="//mdalman.github.io/mobify-poc/images/low-res/5040017_VLT43_ALT-LEFT.jpg"
+        data-src="//mdalman.github.io/mobify-poc/images/high-res/5040017_VLT43_ALT-LEFT.jpg"/>
+      </div>
+
+
+       <div class="col-xs-6 col-sm-4 col-md-3 col-md-2">
+        <img class="img-responsive" 
+        src="//ir0.mobify.com/project-mobify-poc/c8/jpg50/100/http://mdalman.github.io/mobify-poc/images/high-res/5040009_WHT03_ALT-LEFT.jpg"
+        data-fallback-src="//mdalman.github.io/mobify-poc/images/low-res/5040009_WHT03_ALT-LEFT.jpg"
+        data-src="//mdalman.github.io/mobify-poc/images/high-res/5040009_WHT03_ALT-LEFT.jpg"/>
+      </div>
+
+      <div class="col-xs-6 col-sm-4 col-md-3 col-md-2">
+        <img class="img-responsive" 
+        src="//ir0.mobify.com/project-mobify-poc/c8/jpg50/100/http://mdalman.github.io/mobify-poc/images/high-res/5040054_VEN01_ALT-BACK.jpg"
+        data-fallback-src="//mdalman.github.io/mobify-poc/images/low-res/5040054_VEN01_ALT-BACK.jpg"
+        data-src="//mdalman.github.io/mobify-poc/images/high-res/5040054_VEN01_ALT-BACK.jpg"/>
+      </div>
+
+      
+      
+
+    
+
+
+
+      <div class="col-xs-6 col-sm-4 col-md-3 col-md-2">
+        <img class="img-responsive" 
+        src="//ir0.mobify.com/project-mobify-poc/c8/jpg50/100/http://mdalman.github.io/mobify-poc/images/high-res/5040054_TEL41_ALT-BACK.jpg"
+        data-fallback-src="//mdalman.github.io/mobify-poc/images/low-res/5040054_TEL41_ALT-BACK.jpg"
+        data-src="//mdalman.github.io/mobify-poc/images/high-res/5040054_TEL41_ALT-BACK.jpg"/>
+      </div>
  
-      <div class="col-xs-6">
-        <img class="img-responsive img-zoomable" 
-        data-fallback-src="http://mdalman.github.io/mobify-poc/images/low-res/5040017_VLT43_ALT-LEFT.jpg"
-        data-src="http://mdalman.github.io/mobify-poc/images/high-res/5040017_VLT43_ALT-LEFT.jpg"/>
+      <div class="col-xs-6 col-sm-4 col-md-3 col-md-2">
+        <img class="img-responsive" 
+        src="//ir0.mobify.com/project-mobify-poc/c8/jpg50/100/http://mdalman.github.io/mobify-poc/images/high-res/5040003_BL043.jpg"
+        data-fallback-src="//mdalman.github.io/mobify-poc/images/low-res/5040003_BL043.jpg"
+        data-src="//mdalman.github.io/mobify-poc/images/high-res/5040003_BL043.jpg"/>
       </div>
 
-      <div class="col-xs-6">
+      <div class="col-xs-6 col-sm-4 col-md-3 col-md-2">
         <img class="img-responsive" 
-        data-fallback-src="http://mdalman.github.io/mobify-poc/images/low-res/5040009_WHT03_ALT-LEFT.jpg"
-        data-src="http://mdalman.github.io/mobify-poc/images/high-res/5040009_WHT03_ALT-LEFT.jpg"/>
+        src="//ir0.mobify.com/project-mobify-poc/c8/jpg50/100/http://mdalman.github.io/mobify-poc/images/high-res/5040014_BCH06_ALT-SOLE.jpg"
+        data-fallback-src="//mdalman.github.io/mobify-poc/images/low-res/5040014_BCH06_ALT-SOLE.jpg"
+        data-src="//mdalman.github.io/mobify-poc/images/high-res/5040014_BCH06_ALT-SOLE.jpg"/>
       </div>
 
-      <div class="col-xs-6">
+      <div class="col-xs-6 col-sm-4 col-md-3 col-md-2">
         <img class="img-responsive" 
-        data-fallback-src="http://mdalman.github.io/mobify-poc/images/low-res/5040054_VEN01_ALT-BACK.jpg"
-        data-src="http://mdalman.github.io/mobify-poc/images/high-res/5040054_VEN01_ALT-BACK.jpg"/>
+        src="//ir0.mobify.com/project-mobify-poc/c8/jpg50/100/http://mdalman.github.io/mobify-poc/images/high-res/5040059_LIL14.jpg"
+        data-fallback-src="//mdalman.github.io/mobify-poc/images/low-res/5040059_LIL14.jpg"
+        data-src="//mdalman.github.io/mobify-poc/images/high-res/5040059_LIL14.jpg"/>
       </div>
 
-      <div class="col-xs-6">
+      <div class="col-xs-6 col-sm-4 col-md-3 col-md-2">
         <img class="img-responsive" 
-        data-fallback-src="http://mdalman.github.io/mobify-poc/images/low-res/5040054_TEL41_ALT-BACK.jpg"
-        data-src="http://mdalman.github.io/mobify-poc/images/high-res/5040054_TEL41_ALT-BACK.jpg"/>
-      </div>
- 
-      <div class="col-xs-6">
-        <img class="img-responsive" 
-        data-fallback-src="http://mdalman.github.io/mobify-poc/images/low-res/5040003_BL043.jpg"
-        data-src="http://mdalman.github.io/mobify-poc/images/high-res/5040003_BL043.jpg"/>
+        src="//ir0.mobify.com/project-mobify-poc/c8/jpg50/100/http://mdalman.github.io/mobify-poc/images/high-res/5040002_GRY04_ALT-LEFT.jpg"
+        data-fallback-src="//mdalman.github.io/mobify-poc/images/low-res/5040002_GRY04_ALT-LEFT.jpg"
+        data-src="//mdalman.github.io/mobify-poc/images/high-res/5040002_GRY04_ALT-LEFT.jpg"/>
       </div>
 
-      <div class="col-xs-6">
+      <div class="col-xs-6 col-sm-4 col-md-3 col-md-2">
         <img class="img-responsive" 
-        data-fallback-src="http://mdalman.github.io/mobify-poc/images/low-res/5040014_BCH06_ALT-SOLE.jpg"
-        data-src="http://mdalman.github.io/mobify-poc/images/high-res/5040014_BCH06_ALT-SOLE.jpg"/>
+        src="//ir0.mobify.com/project-mobify-poc/c8/jpg50/100/http://mdalman.github.io/mobify-poc/images/high-res/5040010_SIL00_ALT-PATCHKIT.jpg"
+        data-fallback-src="//mdalman.github.io/mobify-poc/images/low-res/5040010_SIL00_ALT-PATCHKIT.jpg"
+        data-src="//mdalman.github.io/mobify-poc/images/high-res/5040010_SIL00_ALT-PATCHKIT.jpg"/>
       </div>
 
-      <div class="col-xs-6">
+      <div class="col-xs-6 col-sm-4 col-md-3 col-md-2">
         <img class="img-responsive" 
-        data-fallback-src="http://mdalman.github.io/mobify-poc/images/low-res/5040059_LIL14.jpg"
-        data-src="http://mdalman.github.io/mobify-poc/images/high-res/5040059_LIL14.jpg"/>
+        src="//ir0.mobify.com/project-mobify-poc/c8/jpg50/100/http://mdalman.github.io/mobify-poc/images/high-res/5040025_GRY00_ALT-BACK.jpg"
+        data-fallback-src="//mdalman.github.io/mobify-poc/images/low-res/5040025_GRY00_ALT-BACK.jpg"
+        data-src="//mdalman.github.io/mobify-poc/images/high-res/5040025_GRY00_ALT-BACK.jpg"/>
       </div>
 
-      <div class="col-xs-6">
+      <div class="col-xs-6 col-sm-4 col-md-3 col-md-2">
         <img class="img-responsive" 
-        data-fallback-src="http://mdalman.github.io/mobify-poc/images/low-res/5040002_GRY04_ALT-LEFT.jpg"
-        data-src="http://mdalman.github.io/mobify-poc/images/high-res/5040002_GRY04_ALT-LEFT.jpg"/>
+        src="//ir0.mobify.com/project-mobify-poc/c8/jpg50/100/http://mdalman.github.io/mobify-poc/images/high-res/5040003_BL043_ALT-BOTTOM.jpg"
+        data-fallback-src="//mdalman.github.io/mobify-poc/images/low-res/5040003_BL043_ALT-BOTTOM.jpg"
+        data-src="//mdalman.github.io/mobify-poc/images/high-res/5040003_BL043_ALT-BOTTOM.jpg"/>
       </div>
 
-      <div class="col-xs-6">
+      <div class="col-xs-6 col-sm-4 col-md-3 col-md-2">
         <img class="img-responsive" 
-        data-fallback-src="http://mdalman.github.io/mobify-poc/images/low-res/5040010_SIL00_ALT-PATCHKIT.jpg"
-        data-src="http://mdalman.github.io/mobify-poc/images/high-res/5040010_SIL00_ALT-PATCHKIT.jpg"/>
+        src="//ir0.mobify.com/project-mobify-poc/c8/jpg50/100/http://mdalman.github.io/mobify-poc/images/high-res/5040048_NOC02.jpg"
+        data-fallback-src="//mdalman.github.io/mobify-poc/images/low-res/5040048_NOC02.jpg"
+        data-src="//mdalman.github.io/mobify-poc/images/high-res/5040048_NOC02.jpg"/>
       </div>
 
-      <div class="col-xs-6">
+      <div class="col-xs-6 col-sm-4 col-md-3 col-md-2">
         <img class="img-responsive" 
-        data-fallback-src="http://mdalman.github.io/mobify-poc/images/low-res/5040025_GRY00_ALT-BACK.jpg"
-        data-src="http://mdalman.github.io/mobify-poc/images/high-res/5040025_GRY00_ALT-BACK.jpg"/>
-      </div>
-
-      <div class="col-xs-6">
-        <img class="img-responsive" 
-        data-fallback-src="http://mdalman.github.io/mobify-poc/images/low-res/5040003_BL043_ALT-BOTTOM.jpg"
-        data-src="http://mdalman.github.io/mobify-poc/images/high-res/5040003_BL043_ALT-BOTTOM.jpg"/>
-      </div>
-
-      <div class="col-xs-6">
-        <img class="img-responsive" 
-        data-fallback-src="http://mdalman.github.io/mobify-poc/images/low-res/5040048_NOC02.jpg"
-        data-src="http://mdalman.github.io/mobify-poc/images/high-res/5040048_NOC02.jpg"/>
-      </div>
-
-      <div class="col-xs-6">
-        <img class="img-responsive" 
-        data-fallback-src="http://mdalman.github.io/mobify-poc/images/low-res/5040019_RED00.jpg"
-        data-src="http://mdalman.github.io/mobify-poc/images/high-res/5040019_RED00.jpg"/>
+        src="//ir0.mobify.com/project-mobify-poc/c8/jpg50/100/http://mdalman.github.io/mobify-poc/images/high-res/5040019_RED00.jpg"
+        data-fallback-src="//mdalman.github.io/mobify-poc/images/low-res/5040019_RED00.jpg"
+        data-src="//mdalman.github.io/mobify-poc/images/high-res/5040019_RED00.jpg"/>
       </div>
 
     
 
-      <div class="col-xs-6">
+      <div class="col-xs-6 col-sm-4 col-md-3 col-md-2">
         <img class="img-responsive" 
-        data-fallback-src="http://mdalman.github.io/mobify-poc/images/low-res/5040054_VEN01.jpg"
-        data-src="http://mdalman.github.io/mobify-poc/images/high-res/5040054_VEN01.jpg"/>
+        src="//ir0.mobify.com/project-mobify-poc/c8/jpg50/100/http://mdalman.github.io/mobify-poc/images/high-res/5040054_VEN01.jpg"
+        data-fallback-src="//mdalman.github.io/mobify-poc/images/low-res/5040054_VEN01.jpg"
+        data-src="//mdalman.github.io/mobify-poc/images/high-res/5040054_VEN01.jpg"/>
       </div>
 
 
 
-      <div class="col-xs-6">
+      <div class="col-xs-6 col-sm-4 col-md-3 col-md-2">
         <img class="img-responsive" 
-        data-fallback-src="http://mdalman.github.io/mobify-poc/images/low-res/5040074_ASP29.jpg"
-        data-src="http://mdalman.github.io/mobify-poc/images/high-res/5040074_ASP29.jpg"/>
+        src="//ir0.mobify.com/project-mobify-poc/c8/jpg50/100/http://mdalman.github.io/mobify-poc/images/high-res/5040074_ASP29.jpg"
+        data-fallback-src="//mdalman.github.io/mobify-poc/images/low-res/5040074_ASP29.jpg"
+        data-src="//mdalman.github.io/mobify-poc/images/high-res/5040074_ASP29.jpg"/>
       </div>
 
     
 
-      <div class="col-xs-6">
+      <div class="col-xs-6 col-sm-4 col-md-3 col-md-2">
         <img class="img-responsive" 
-        data-fallback-src="http://mdalman.github.io/mobify-poc/images/low-res/5040034_FRE00.jpg"
-        data-src="http://mdalman.github.io/mobify-poc/images/high-res/5040034_FRE00.jpg"/>
+        src="//ir0.mobify.com/project-mobify-poc/c8/jpg50/100/http://mdalman.github.io/mobify-poc/images/high-res/5040034_FRE00.jpg"
+        data-fallback-src="//mdalman.github.io/mobify-poc/images/low-res/5040034_FRE00.jpg"
+        data-src="//mdalman.github.io/mobify-poc/images/high-res/5040034_FRE00.jpg"/>
       </div>
    
 
 
-      <div class="col-xs-6">
+      <div class="col-xs-6 col-sm-4 col-md-3 col-md-2">
         <img class="img-responsive" 
-        data-fallback-src="http://mdalman.github.io/mobify-poc/images/low-res/5040010_SIL00_ALT-BACK.jpg"
-        data-src="http://mdalman.github.io/mobify-poc/images/high-res/5040010_SIL00_ALT-BACK.jpg"/>
+        src="//ir0.mobify.com/project-mobify-poc/c8/jpg50/100/http://mdalman.github.io/mobify-poc/images/high-res/5040010_SIL00_ALT-BACK.jpg"
+        data-fallback-src="//mdalman.github.io/mobify-poc/images/low-res/5040010_SIL00_ALT-BACK.jpg"
+        data-src="//mdalman.github.io/mobify-poc/images/high-res/5040010_SIL00_ALT-BACK.jpg"/>
       </div>
 
     
 
-      <div class="col-xs-6">
+      <div class="col-xs-6 col-sm-4 col-md-3 col-md-2">
         <img class="img-responsive" 
-        data-fallback-src="http://mdalman.github.io/mobify-poc/images/low-res/5040017_GRY20_ALT-LEFT.jpg"
-        data-src="http://mdalman.github.io/mobify-poc/images/high-res/5040017_GRY20_ALT-LEFT.jpg"/>
+        src="//ir0.mobify.com/project-mobify-poc/c8/jpg50/100/http://mdalman.github.io/mobify-poc/images/high-res/5040017_GRY20_ALT-LEFT.jpg"
+        data-fallback-src="//mdalman.github.io/mobify-poc/images/low-res/5040017_GRY20_ALT-LEFT.jpg"
+        data-src="//mdalman.github.io/mobify-poc/images/high-res/5040017_GRY20_ALT-LEFT.jpg"/>
       </div>
 
 
 
-      <div class="col-xs-6">
+      <div class="col-xs-6 col-sm-4 col-md-3 col-md-2">
         <img class="img-responsive" 
-        data-fallback-src="http://mdalman.github.io/mobify-poc/images/low-res/5040100_BL436.jpg"
-        data-src="http://mdalman.github.io/mobify-poc/images/high-res/5040100_BL436.jpg"/>
+        src="//ir0.mobify.com/project-mobify-poc/c8/jpg50/100/http://mdalman.github.io/mobify-poc/images/high-res/5040100_BL436.jpg"
+        data-fallback-src="//mdalman.github.io/mobify-poc/images/low-res/5040100_BL436.jpg"
+        data-src="//mdalman.github.io/mobify-poc/images/high-res/5040100_BL436.jpg"/>
       </div>
 
     
 
-      <div class="col-xs-6">
+      <div class="col-xs-6 col-sm-4 col-md-3 col-md-2">
         <img class="img-responsive" 
-        data-fallback-src="http://mdalman.github.io/mobify-poc/images/low-res/5040046_NOC02.jpg"
-        data-src="http://mdalman.github.io/mobify-poc/images/high-res/5040046_NOC02.jpg"/>
+        src="//ir0.mobify.com/project-mobify-poc/c8/jpg50/100/http://mdalman.github.io/mobify-poc/images/high-res/5040046_NOC02.jpg"
+        data-fallback-src="//mdalman.github.io/mobify-poc/images/low-res/5040046_NOC02.jpg"
+        data-src="//mdalman.github.io/mobify-poc/images/high-res/5040046_NOC02.jpg"/>
       </div>
-
+     </div>
 
 
        <div id="load-more-container" class="col-xs-12">
-          <a id="load-more" class="btn btn-default btn-lg" href="http://mdalman.github.io/mobify-poc/api/page1.json" role="button">Load More</a>
+          <a id="load-more" class="btn btn-default btn-lg" href="//mdalman.github.io/mobify-poc/api/page1.json" role="button">Load More</a>
        </div>
 
 
+    
+
+
+
+
   </div>
+  
+     <div class="modal fade" id="img-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+         <div class="modal-dialog modal-lg" >
+           <div class="modal-content" >              
+             <div class="modal-body"  >
+             	<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+               <img class="img-preview img-zoomable img-responsive"  >
+             </div>
+           </div>
+         </div>
+       </div>
+  
+  
 </body>
 
 <!--  <script src="//cdnjs.cloudflare.com/ajax/libs/zepto/1.1.4/zepto.min.js"></script>-->
 <!--<script src="//mdalman.github.io/mobify-poc/js/jquery-stripped.min.js"></script> -->
+<script src="//mdalman.github.io/mobify-poc/js/modernizr.js"  ></script> 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="//mdalman.github.io/mobify-poc/js/purl.js"></script> 
 <script src="//mdalman.github.io/mobify-poc/js/loadimages.js"></script> 
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-<script src="//mdalman.github.io/mobify-poc/js/loadnext.js"></script> 
+<script src="//mdalman.github.io/mobify-poc/js/main.js"></script>
+
+<script type="text/javascript">
+             $(document).ready(function() {
+                 console.log("Time until DOMready: ", Date.now()-timerStart);
+                 $('#dom-ready').html((Date.now()-timerStart)+' ms');
+             });
+             $(window).load(function() {
+                 console.log("Time until everything loaded: ", Date.now()-timerStart);
+                 $('#finished-loading').html((Date.now()-timerStart)+' ms');
+                 getTotalImageBandwidth($('#image-weight'));
+                 
+             });
+        </script>
 </html>

@@ -1,6 +1,9 @@
+DEBUG = false;
+
 QUALITY_OVERRIDE_PARAMETER = 'q';
 PIXEL_RATIO_OVERRIDE_PARAMETER = 'pr';
 FALLBACK_TRIGGER_PARAMETER = 'fb';
+VENDOR_OVERRIDE_PARAMETER = 'v';
 
 IMAGE_URL_ATTRIBUTE_NAME = 'data-src';
 IMAGE_URL_FALLBACK_ATTRIBUTE_NAME = 'data-fallback-src';
@@ -9,6 +12,8 @@ PIXEL_STEP = 100;
 
 MINIMUM_PIXEL_RATIO = 1;
 MAXIMUM_PIXEL_RATIO = 3;
+
+MAXIMUM_WIDTH = 4000;
 
 IMAGE_RESIZE_PROXY_BASE = '//ir0.mobify.com/project-mobify-poc/c8/';
 
@@ -27,13 +32,20 @@ QUALITIES = {
 	} //Both values are guesses
 };
 
+
+
+if (DEBUG === false){
+	console.log = function() {}
+}
+
+
 function getUrlOverride(queryParameter, original) {
 	var override = purl(window.location).param(queryParameter);
-	if (typeof override === "undefined") {
-//		console.log('No override: '+queryParameter + '=' + original);
+	if (typeof override === "undefined" || override === "") {
+		console.log('No override: '+queryParameter + '=' + original);
 		return original;
 	} else {
-//		console.log('Override: '+queryParameter + '=' + override);
+		console.log('Override: '+queryParameter + '=' + override);
 		return override;
 	}
 }
@@ -44,7 +56,7 @@ function insertFallbackImageUrl(e) {
 	$image.off('error'); //If we put another url in src that 404's we don't want an infinite loop
 	var fallbackSrc = $image.attr(IMAGE_URL_FALLBACK_ATTRIBUTE_NAME);
 	var src = $image.attr('src');
-//	console.log('Error loading: '+src+' reverting to fallback: '+fallbackSrc);
+	console.log('Error loading: '+src+' reverting to fallback: '+fallbackSrc);
 	$image.attr('src', fallbackSrc);
 }
 
@@ -53,21 +65,53 @@ function roundToStep(rawValue, step) {
 }
 
 function getImageFormat(){
-	if (Modernizr.webp) {
-		return 'webp';
-	} else {
-		return 'jpg';
+	try{
+		if (Modernizr.webp) {
+			return 'webp';
+		}	
+	}
+	catch(err){}
+	return 'jpg';
+}
+
+function getImgixUrl(originalUrl, width, quality,format){
+	var IMAGES_BASE_URL = '//mdalman.github.io/mobify-poc/images/';
+	
+	
+	'http://mdalman.imgix.net/high-res/5040017_VLT43_ALT-LEFT.jpg?auto=format&fit=crop&h=480&q=80&w=940'
+	var baseUrl = originalUrl.replace(/^(https?:)?\/\/mdalman.github.io\/mobify-poc\/images\//,
+	                                    '//mdalman.imgix.net/');
+	
+	var processOptions = 'fm='+format+'&w='+width+'&q='+quality;
+//	var processOptions = 'auto=format&w='+width+'&q='+quality;//use content negotiation to determine format
+	var optimizedUrl = baseUrl + '?' + processOptions;                              
+	return optimizedUrl;
+}
+
+function getMobifyUrl(originalUrl, width, quality,format){
+        var cleanedOriginal = originalUrl.replace(/^\/\//, 'http://'); //put a protocol on if none
+	return IMAGE_RESIZE_PROXY_BASE + format + quality + '/' + width + '/' + cleanedOriginal;	
+}
+
+function getOptimizedUrl(originalUrl, width, quality,format){
+	var vendor = getUrlOverride(VENDOR_OVERRIDE_PARAMETER,'mobify');
+	if (vendor === 'imgix'){
+		console.log('imgix');
+		return getImgixUrl(originalUrl, width, quality,format)
+		
+	}
+	else{
+		return getMobifyUrl(originalUrl, width, quality,format);
 	}
 }
 
 function getImageUrl(originalUrl, width, quality,format) {
-
-	var url = IMAGE_RESIZE_PROXY_BASE + format + quality + '/' + width + '/' + originalUrl;
+        var url = getOptimizedUrl(originalUrl, width, quality,format)
 	var forceFallback = getUrlOverride(FALLBACK_TRIGGER_PARAMETER,'false');
 	if(forceFallback === 'true'){
-		url = 'http://www.mec.ca/Sitemap/404_page.jsp?type=404';
+		url = '//www.mec.ca/Sitemap/404_page.jsp?type=404';
 	}
-//	console.log('Optimized url: '+url);
+	console.log('Optimized url: '+url);
 	return url;
 }
 
@@ -75,11 +119,13 @@ function getImageUrl(originalUrl, width, quality,format) {
 function getPixelRatio() {
 	var pixelRatio;
 
-	if (typeof devicePixelRatio === "undefined") {
-		pixelRatio = MINIMUM_PIXEL_RATIO;
-	} else {
-		pixelRatio = devicePixelRatio;
+	try{
+		pixelRatio = devicePixelRatio;	
 	}
+	catch(err){
+		pixelRatio = MINIMUM_PIXEL_RATIO;
+	}
+
 	return getUrlOverride(PIXEL_RATIO_OVERRIDE_PARAMETER, pixelRatio );
 }
 
@@ -119,18 +165,25 @@ function loadImage($image){
 	
 	var $parent = $image.parent();
 	var cssWidth = $parent.width();
+	console.log('cssWidth: '+cssWidth);
+	console.log('pixelRatio: '+pixelRatio);
 	var targetWidth = Math.ceil(cssWidth * pixelRatio);
+	if (targetWidth > MAXIMUM_WIDTH){
+	      targetWidth = MAXIMUM_WIDTH;
+	}
 
 	var format = getImageFormat();
 	var steppedTargetWidth = roundToStep(targetWidth, PIXEL_STEP);
 
 	var optimizedUrl = getImageUrl(dataSrc, steppedTargetWidth, quality,format);
-
-	$image.attr('src', optimizedUrl).on('error', insertFallbackImageUrl);
+//	$image.attr('src', optimizedUrl).on('error', insertFallbackImageUrl);
+        var tinySrc = $image.attr('src');
+	$image.attr('src', optimizedUrl).attr('data-tiny-src',tinySrc).on('error', insertFallbackImageUrl);
 }
 
 function loadImages(event) {
-	var $images = $('img:not([src])['+IMAGE_URL_ATTRIBUTE_NAME+']');
+//	var $images = $('img:not([src])['+IMAGE_URL_ATTRIBUTE_NAME+']');
+	var $images = $('img:not([data-tiny-src])['+IMAGE_URL_ATTRIBUTE_NAME+']');
 	$images.each(function (index, image) {
 		var $image = $(image);
 		loadImage($image);
