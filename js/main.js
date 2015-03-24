@@ -84,9 +84,13 @@ $(document).ready(function() {
     $('#zoom-quality').append(getQuality(getPixelRatio(),true)+'%');
     $('#regular-quality').append(getQuality(getPixelRatio(),false)+'%');    
       
+ 
+    Modernizr.on('webp', function (result) {//wait until we know if webp is supported
+        loadImages();
+	});
+  
+  
     
-  //  console.log('webp'+Modernizr.webp);
-    loadImages();
     $('#load-more').click(loadNextPage);
     
     
