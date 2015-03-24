@@ -35,7 +35,7 @@ function loadNextPage(event) {
         $.each(data.images, function (index, imageUrl) {
             var fallbackImageUrl = getFallBackImageUrl(imageUrl);
             var quickSrc = getImageUrl(imageUrl, 100, 50,'jpg');
-            var htmlRow = '<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">' +
+            var htmlRow = '<div style="height:auto;" class="col-xs-6 col-sm-4 col-md-3 col-lg-2">' +
                             '<img class="img-responsive" ' +
                                  'data-src="' + imageUrl + '" ' +
                                  'src="' + quickSrc + '" ' +
