@@ -90,9 +90,9 @@ $(document).ready(function () {
     $('#regular-quality').append(getQuality(getPixelRatio(), false) + '%');
 
 
-    Modernizr.on('webp', function (result) { //wait until we know if webp is supported
-        loadImages();
-    });
+
+    loadImages();
+
 
 
 
