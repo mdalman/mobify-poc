@@ -50,15 +50,22 @@ function getUrlOverride(queryParameter, original) {
 	}
 }
 
-function insertFallbackImageUrl(e) {
-
-	var $image = $(e.target);
-	$image.off('error'); //If we put another url in src that 404's we don't want an infinite loop
+function insertFallbackImageUrl(image) {
+	clearTimeout(image.timer);
+	var $image = $(image);
 	var fallbackSrc = $image.attr(IMAGE_URL_FALLBACK_ATTRIBUTE_NAME);
 	var src = $image.attr('src');
 	console.log('Error loading: '+src+' reverting to fallback: '+fallbackSrc);
 	$image.attr('src', fallbackSrc);
 }
+
+function handleImageError(e){
+	var image = e.target;
+	var $image = $(image);
+	$image.off('error'); //If we put another url in src that 404's we don't want an infinite loop	
+	insertFallbackImageUrl(image);
+}
+
 
 function roundToStep(rawValue, step) {
 	return Math.ceil((rawValue) / step) * step;
@@ -186,7 +193,21 @@ function loadImage($image){
 	var optimizedUrl = getImageUrl(dataSrc, steppedTargetWidth, quality,format);
 //	$image.attr('src', optimizedUrl).on('error', insertFallbackImageUrl);
         var tinySrc = $image.attr('src');
-	$image.attr('src', optimizedUrl).attr('data-tiny-src',tinySrc).on('error', insertFallbackImageUrl);
+	$image.attr('src', optimizedUrl).attr('data-tiny-src',tinySrc).on('error', handleImageError);
+	
+	if (!image.complete) {
+	        image.timer = setTimeout(function (){
+	            insertFallbackImageUrl(image);
+	        }, 1000);
+	
+	        $image.on('load', function () {
+	            clearTimeout(image.timer);
+	        });
+        }
+	
+	
+	
+	
 	//TODO: implement timeout logic: http://jsfiddle.net/d0upkg76/8/
 }
 
