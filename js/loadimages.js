@@ -1,5 +1,7 @@
 DEBUG = false;
 
+IMAGE_TIMEOUT_LIMIT = 4000;//ms
+
 QUALITY_OVERRIDE_PARAMETER = 'q';
 PIXEL_RATIO_OVERRIDE_PARAMETER = 'pr';
 FALLBACK_TRIGGER_PARAMETER = 'fb';
@@ -198,7 +200,7 @@ function loadImage(image){
 	if (!image.complete) {
 	        image.timer = setTimeout(function (){
 	            insertFallbackImageUrl(image);
-	        }, 1000);
+	        }, IMAGE_TIMEOUT_LIMIT);
 	
 	        $image.on('load', function () {
 	            clearTimeout(image.timer);
