@@ -162,6 +162,7 @@ function getQuality(pixelRatio, zoom) {
 }
 
 function loadImage($image){
+	var $image = $(image);
 	var dataSrc = $image.attr(IMAGE_URL_ATTRIBUTE_NAME);
 
 	var pixelRatio = getPixelRatio();
@@ -193,7 +194,7 @@ function loadImages(event) {
 //	var $images = $('img:not([src])['+IMAGE_URL_ATTRIBUTE_NAME+']');
 	var $images = $('img:not([data-tiny-src])['+IMAGE_URL_ATTRIBUTE_NAME+']');
 	$images.each(function (index, image) {
-		var $image = $(image);
-		loadImage($image);
+		
+		loadImage(image);
 	});
 }
