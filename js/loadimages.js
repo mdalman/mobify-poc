@@ -107,7 +107,7 @@ function getOptimizedUrl(originalUrl, width, quality,format){
 
 function getImageUrl(originalUrl, width, quality,format) {
         var url = getOptimizedUrl(originalUrl, width, quality,format)
-	var forceFallback = getUrlOverride(FALLBACK_TRIGGER_PARAMETER,'noerror');
+	var forceFallback = getUrlOverride(FALLBACK_TRIGGER_PARAMETER,'');
 	if(forceFallback === '404'){
 		url = '//www.mec.ca/Sitemap/404_page.jsp?type=404';
 	}
