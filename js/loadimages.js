@@ -186,6 +186,7 @@ function loadImage($image){
 //	$image.attr('src', optimizedUrl).on('error', insertFallbackImageUrl);
         var tinySrc = $image.attr('src');
 	$image.attr('src', optimizedUrl).attr('data-tiny-src',tinySrc).on('error', insertFallbackImageUrl);
+	//TODO: implement timeout logic: http://jsfiddle.net/d0upkg76/8/
 }
 
 function loadImages(event) {
