@@ -114,7 +114,7 @@ function getImageUrl(originalUrl, width, quality,format) {
 	if(forceFallback === 'timeout'){
 	        url = '//10.255.255.1/'+Math.random()+'.jpg';
 	}
-	if(forceFallbak === '500'){
+	if(forceFallback === '500'){
 		url = 'http://httpstat.us/500';
 	}
 	
