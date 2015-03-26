@@ -90,8 +90,8 @@ $(document).ready(function () {
     $('#regular-quality').append(getQuality(getPixelRatio(), false) + '%');
 
 
-    //Modernizr.on('webp',); //wait for modernizr
-    loadImages();
+    Modernizr.on('webp',loadImages); //wait for modernizr
+
 
     $('#load-more').click(loadNextPage);
 
