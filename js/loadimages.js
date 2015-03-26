@@ -109,10 +109,13 @@ function getImageUrl(originalUrl, width, quality,format) {
         var url = getOptimizedUrl(originalUrl, width, quality,format)
 	var forceFallback = getUrlOverride(FALLBACK_TRIGGER_PARAMETER,'');
 	if(forceFallback === '404'){
-		url = '//www.mec.ca/Sitemap/404_page.jsp?type=404';
+		url = 'http://httpstat.us/404';
 	}
 	if(forceFallback === 'timeout'){
 	        url = '//10.255.255.1/'+Math.random()+'.jpg';
+	}
+	if(forceFallbak === '500'){
+		url = 'http://httpstat.us/500';
 	}
 	
 	console.log('Optimized url: '+url);
