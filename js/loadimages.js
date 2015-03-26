@@ -168,7 +168,7 @@ function getQuality(pixelRatio, zoom) {
 	return getUrlOverride(QUALITY_OVERRIDE_PARAMETER, quality);
 }
 
-function loadImage($image){
+function loadImage(image){
 	var $image = $(image);
 	var dataSrc = $image.attr(IMAGE_URL_ATTRIBUTE_NAME);
 
