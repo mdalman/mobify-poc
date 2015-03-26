@@ -197,7 +197,7 @@ function loadImage(image){
         var tinySrc = $image.attr('src');
 	$image.attr('src', optimizedUrl).attr('data-tiny-src',tinySrc).on('error', handleImageError);
 	
-	if (!image.complete) {
+/*	if (!image.complete) {
 	        image.timer = setTimeout(function (){
 	            insertFallbackImageUrl(image);
 	        }, IMAGE_TIMEOUT_LIMIT);
@@ -205,7 +205,7 @@ function loadImage(image){
 	        $image.on('load', function () {
 	            clearTimeout(image.timer);
 	        });
-        }
+        } //This doesn't really work yet*/
 	
 	
 	
