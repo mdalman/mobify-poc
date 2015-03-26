@@ -75,7 +75,7 @@ function roundToStep(rawValue, step) {
 
 function getImageFormat(){
 	try{
-		if (Modernizr.webp) {
+		if (Modernizr.webp === true) {
 			return 'webp';
 		}	
 	}
