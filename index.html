@@ -297,7 +297,7 @@ $(document).ready(function() {
 $(window).load(function() {
     console.log("Time until everything loaded: ", Date.now()-timerStart);
     $('#finished-loading').html((Date.now()-timerStart)+' ms');
-    getTotalImageBandwidth($('#image-weight'));
+    setTimeout(function(){getTotalImageBandwidth($('#image-weight'));},5000);
  
 });
 </script>
