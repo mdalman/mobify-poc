@@ -112,7 +112,7 @@ function getImageUrl(originalUrl, width, quality,format) {
 		url = '//www.mec.ca/Sitemap/404_page.jsp?type=404';
 	}
 	if(forceFallback === 'timeout'){
-	        url = '//10.255.255.1/oijsdf'
+	        url = '//10.255.255.1/'+Math.random()+'.jpg';
 	}
 	
 	console.log('Optimized url: '+url);
