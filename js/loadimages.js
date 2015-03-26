@@ -107,10 +107,14 @@ function getOptimizedUrl(originalUrl, width, quality,format){
 
 function getImageUrl(originalUrl, width, quality,format) {
         var url = getOptimizedUrl(originalUrl, width, quality,format)
-	var forceFallback = getUrlOverride(FALLBACK_TRIGGER_PARAMETER,'false');
-	if(forceFallback === 'true'){
+	var forceFallback = getUrlOverride(FALLBACK_TRIGGER_PARAMETER,'noerror');
+	if(forceFallback === '404'){
 		url = '//www.mec.ca/Sitemap/404_page.jsp?type=404';
 	}
+	if(forceFallback === 'timeout'){
+	        url = '//10.255.255.1/oijsdf'
+	}
+	
 	console.log('Optimized url: '+url);
 	return url;
 }
