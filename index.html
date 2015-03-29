@@ -42,7 +42,6 @@
              <li>Requested regular quality : <span id="regular-quality"></span></li>
              <li>Dom ready in : <span id="dom-ready">rendering...</span></li>
              <li>Finished loading in : <span id="finished-loading">downloading images...</span></li>
-             <li>Final size of images : <span id="image-weight">calculating...</span></li>
            </ul>
         </div>
       </div>
@@ -295,8 +294,6 @@ $(document).ready(function() {
 $(window).load(function() {
     console.log("Time until everything loaded: ", Date.now()-timerStart);
     $('#finished-loading').html((Date.now()-timerStart)+' ms');
-    setTimeout(function(){getTotalImageBandwidth($('#image-weight'));},1000);
- 
 });
 </script>
 
