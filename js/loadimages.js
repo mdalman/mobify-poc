@@ -91,7 +91,7 @@ function getImgixUrl(originalUrl, width, quality,format){
 	var baseUrl = originalUrl.replace(/^(https?:)?\/\/mdalman.github.io\/mobify-poc\/images\//,
 	                                    '//mdalman.imgix.net/');
 	
-	var processOptions = 'fm='+format+'&w='+width+'&q='+quality;
+	var processOptions = 'chester=facet'+'&fm='+format+'&w='+width+'&q='+quality;
 //	var processOptions = 'auto=format&w='+width+'&q='+quality;//use content negotiation to determine format
 	var optimizedUrl = baseUrl + '?' + processOptions;                              
 	return optimizedUrl;
